@@ -1,0 +1,143 @@
+[
+  {
+    "id":"53be0ae4-591c-4e8a-86d2-064175089aae",
+    "status":"Em dias",
+    "cnpj":"69.208.491/0001-67",
+    "corporateName":"Cliente 1",
+    "email": "client1@gmail.com",
+    "password": "client1",
+    "contacts":{
+      "email":"cliente1@gmail.com",
+      "whatsapp":"(88) 9 9999-9999",
+      "phoneNumber":"(88) 9 9999-9999"
+    },
+    "obligations":[
+      {
+        "id": "1",
+        "finalDeliveryDate":"30/06/2022",
+        "obligation":"Transporte Aéreo",
+        "description":"Demonstrativo de Apuração do ICMS. Apresentação do Demonstrativo de Apuração do ICMS (DAICMS) pelas empresas prestadoras de serviço de transporte aéreo. Base legal: Art. 778 do RICMS-CE."
+      },
+      {
+        "id": "2",
+        "finalDeliveryDate":"30/06/2022",
+        "obligation":"Indústria/Produtor",
+        "description":"Estabelecimento Industrial e Produtor Agropecuário. Recolhimento do imposto pelo estabelecimento industrial, nos casos do ICMS decorrente de operações próprias e do ICMS retido por substituição tributária e o produtor agropecuário. Base legal: Art. 88, I, alíneas 'a' e 'b', do Decreto nº 33.327/19."
+      },
+      {
+        "id": "3",
+        "finalDeliveryDate":"11/07/2022",
+        "obligation":"Transporte Aéreo",
+        "description":"Recolhimento parcial. Recolhimento parcial, referente à 1ª parcela do ICMS, em percentual não inferior a 70%, pelas empresas prestadoras de serviço de transporte aéreo. Base legal: Art. 788, inciso II, do RICMS-CE."
+      }
+    ]
+  },
+  {
+    "id":"311e4563-40a6-41f5-8fa5-95e1f9a1ede3",
+    "status":"Em atraso",
+    "cnpj":"59.421.490/0001-42",
+    "corporateName":"Cliente 2",
+    "email": "client2@gmail.com",
+    "password": "client2",
+    "contacts":
+      {
+        "email":"cliente2@gmail.com",
+        "whatsapp":"(88) 9 7777-7777",
+        "phoneNumber":"(88) 9 7777-7777"
+      },
+    "obligations":[
+      {
+        "id": "4",
+        "finalDeliveryDate":"15/07/2022",
+        "obligation":"DIFAL",
+        "description":"Emenda Constitucional nº 87/15. Recolhimento do imposto pelo contribuinte estabelecido em outras Unidades da Federação e inscrito neste Estado como credenciado e destinar mercadoria, bem ou serviço a consumidor final, não contribuinte do imposto, localizado neste Estado. Base legal: Art. 88, VII, do Decreto nº 33.327/19."
+      },
+      {
+        "id": "5",
+        "finalDeliveryDate":"29/07/2022",
+        "obligation":"Arquivo Eletrônico",
+        "description":"Serviços de comunicação ou energia elétrica - Emissão de documento fiscal em via única. Apresentação de arquivo eletrônico por contribuintes prestadores de serviços de comunicação ou fornecedores de energia elétrica referentes a documentos fiscais impressos em via única, por meio de sistema eletrônico de processamento de dados. Base legal: Art. 6º, I do Decreto nº 27.492/2004."
+      },
+      {
+        "id": "6",
+        "finalDeliveryDate":"20/08/2022",
+        "obligation":"EFD",
+        "description":"Escrituração Fiscal Digital. Entrega do arquivo digital pelos contribuintes obrigados, contendo informações sobre as operações e prestações ocorridas no mês anterior. Base legal: Art. 276-E do RICMS-CE."
+      },
+      {
+        "id": "7",
+        "finalDeliveryDate":"22/08/2022",
+        "obligation":"Diversos segmentos",
+        "description":"Contribuintes Enquadrados na Lei nº 14.237/08 e Demais Contribuintes Inscritos no CGF. Os contribuintes enquadrados na Lei nº 14.237/08 e demais contribuintes inscritos no Cadastro Geral da Fazenda (CGF), sem prazo específico previsto na legislação tributária. Base legal: Art. 88, inciso II, alínea 'c' do Decreto nº 33.327/19."
+      }
+    ]
+  },
+  {
+    "id":"b1aabe4c-0280-4f59-853d-dabf22579f45",
+    "status":"Em atenção",
+    "cnpj":"27.261.071/0001-02",
+    "corporateName":"Cliente 3",
+    "email": "client3@gmail.com",
+    "password": "client3",
+    "contacts":
+      {
+        "email":"cliente3@gmail.com",
+        "whatsapp":"(88) 9 8888-8888",
+        "phoneNumber":"(88) 9 8888-8888"
+      },
+    "obligations":[
+      {
+        "id": "8",
+        "finalDeliveryDate":"31/08/2022",
+        "obligation":"Arquivo Eletrônico",
+        "description":"Serviços de comunicação ou energia elétrica - Emissão de documento fiscal em via única. Apresentação de arquivo eletrônico por contribuintes prestadores de serviços de comunicação ou fornecedores de energia elétrica referentes a documentos fiscais impressos em via única, por meio de sistema eletrônico de processamento de dados. Base legal: Art. 6º, I do Decreto nº 27.492/2004."
+      },
+      {
+        "id": "9",
+        "finalDeliveryDate":"31/08/2022",
+        "obligation":"Indústria/Produtor",
+        "description":"Estabelecimento Industrial e Produtor Agropecuário. Recolhimento do imposto pelo estabelecimento industrial, nos casos do ICMS decorrente de operações próprias e do ICMS retido por substituição tributária e o produtor agropecuário. Base legal: Art. 88, I, alíneas 'a' e 'b', do Decreto nº 33.327/19."
+      },
+      {
+        "id": "10",
+        "finalDeliveryDate":"31/08/2022",
+        "obligation":"Transporte Aéreo",
+        "description":"Recolhimento complementar. Recolhimento parcial do ICMS, pelas empresas prestadoras de serviço de transporte aéreo, referente à segunda parcela complementar. Base legal: Art. 788, inciso II, do RICMS-CE."
+      }
+    ]
+  },
+  {
+    "id":"b1aabe4c-0280-4f59-853d-dabf22579f40",
+    "status":"Em atenção",
+    "cnpj":"16.035.011/0001-47",
+    "corporateName":"Cliente 4",
+    "email": "client4@gmail.com",
+    "password": "client4",
+    "contacts":
+      {
+        "email":"cliente4@gmail.com",
+        "whatsapp":"(88) 9 8888-8888",
+        "phoneNumber":"(88) 9 8888-8888"
+      },
+    "obligations":[
+      {
+        "id": "8",
+        "finalDeliveryDate":"31/08/2022",
+        "obligation":"Arquivo Eletrônico",
+        "description":"Serviços de comunicação ou energia elétrica - Emissão de documento fiscal em via única. Apresentação de arquivo eletrônico por contribuintes prestadores de serviços de comunicação ou fornecedores de energia elétrica referentes a documentos fiscais impressos em via única, por meio de sistema eletrônico de processamento de dados. Base legal: Art. 6º, I do Decreto nº 27.492/2004."
+      },
+      {
+        "id": "9",
+        "finalDeliveryDate":"31/08/2022",
+        "obligation":"Indústria/Produtor",
+        "description":"Estabelecimento Industrial e Produtor Agropecuário. Recolhimento do imposto pelo estabelecimento industrial, nos casos do ICMS decorrente de operações próprias e do ICMS retido por substituição tributária e o produtor agropecuário. Base legal: Art. 88, I, alíneas 'a' e 'b', do Decreto nº 33.327/19."
+      },
+      {
+        "id": "10",
+        "finalDeliveryDate":"31/08/2022",
+        "obligation":"Transporte Aéreo",
+        "description":"Recolhimento complementar. Recolhimento parcial do ICMS, pelas empresas prestadoras de serviço de transporte aéreo, referente à segunda parcela complementar. Base legal: Art. 788, inciso II, do RICMS-CE."
+      }
+    ]
+  }
+]
