@@ -52,6 +52,6 @@ export function getStatusFilterData(): DefaultOptionType[] {
   return statusFilterData;
 }
 
-export function getCounterTableData(): CounterTableDataType[] {
+export function getCustomerTableData(): CounterTableDataType[] {
   return customerTableData;
 }

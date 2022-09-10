@@ -12,7 +12,7 @@ import { useCounterColumns } from '../../hooks/columns/useCounterTableColumns';
 
 import {
   CounterTableDataType,
-  getCounterTableData
+  getCustomerTableData
 } from '../../services/CounterService';
 import { HeaderForm } from './HeaderForm';
 
@@ -23,9 +23,9 @@ const { Title } = Typography;
 export function Counter() {
   const [customerDataList, setCustomerDataList] = useState<CounterTableDataType[] | undefined>(
     () => {
-      const counterTableData = getCounterTableData();
+      const customerTableData = getCustomerTableData();
 
-      return counterTableData;
+      return customerTableData;
     }
   );
 
