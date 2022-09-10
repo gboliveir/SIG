@@ -57,6 +57,7 @@ export function Counter() {
       >
         <Card title="Clientes">
           <Table
+            rowKey={(record) => record.id}
             dataSource={customerDataList}
             columns={customerTableColumns}
           />
