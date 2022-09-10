@@ -9,6 +9,7 @@ import {
   getCustomerFilterData,
   getStatusFilterData
 } from '../../../services/CounterService';
+import { FormItem } from '../FormItem';
 
 export function HeaderForm() {
   const [customerFilterList, setCustomerFilterList] = useState<DefaultOptionType[]>(
@@ -47,50 +48,23 @@ export function HeaderForm() {
         gap: '20px'
       }}
     >
-      <Form.Item
-        label="Cliente"
-        name="client"
-      >
-        <Select
-          style={{ minWidth: 150 }}
-          showSearch
-          allowClear
-          mode='multiple'
-          maxTagCount={3}
-          optionFilterProp='label'
-          options={customerFilterList}
-        />
-      </Form.Item>
+      <FormItem 
+        label='Cliente'
+        name='client'
+        options={customerFilterList}
+      />
 
-      <Form.Item
-        label="CNPJ"
-        name="cnpj"
-      >
-        <Select
-          style={{ minWidth: 150 }}
-          showSearch
-          allowClear
-          mode='multiple'
-          maxTagCount={3}
-          optionFilterProp='label'
-          options={CNPJFilterList}
-        />
-      </Form.Item>
+      <FormItem 
+        label='CNPJ'
+        name='cnpj'
+        options={CNPJFilterList}
+      />
 
-      <Form.Item
-        label="Status"
-        name="status"
-      >
-        <Select
-          style={{ minWidth: 150 }}
-          showSearch
-          allowClear
-          mode='multiple'
-          maxTagCount={3}
-          optionFilterProp='label'
-          options={statusFilterList}
-        />
-      </Form.Item>
+      <FormItem 
+        label='Status'
+        name='status'
+        options={statusFilterList}
+      />
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button
