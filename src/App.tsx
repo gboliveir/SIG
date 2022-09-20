@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Router } from './Router';
 
 import './styles/global.scss';
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import 'antd/dist/antd.css';
 
 export function App() {
   return (

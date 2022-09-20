@@ -16,7 +16,6 @@ import {
 } from '../../services/CounterService';
 import { HeaderForm } from './HeaderForm';
 
-
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
