@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import {
   Card,
@@ -10,25 +11,35 @@ import {
 
 import { useCounterColumns } from '../../hooks/columns/useCounterTableColumns';
 
-import {
-  CounterTableDataType,
-  getCustomerTableData
-} from '../../services/CounterService';
 import { HeaderForm } from './HeaderForm';
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
+interface ContactType {
+  id: string;
+  customerId: string;
+  contact: string;
+  type: string;
+}
+
+export interface CustomerType {
+  id: string;
+  cnpj: string;
+  name: string;
+  status: string;
+  contacts: ContactType[],
+}
+
 export function Counter() {
-  const [customerDataList, setCustomerDataList] = useState<CounterTableDataType[] | undefined>(
-    () => {
-      const customerTableData = getCustomerTableData();
-
-      return customerTableData;
-    }
-  );
-
+  const [customerDataList, setCustomerDataList] = useState<CustomerType[] | undefined>();
   const { customerTableColumns } = useCounterColumns();
+
+  useEffect(() => {
+    axios('http://localhost:3333/customers').then(response => {
+      setCustomerDataList(response.data);
+    })
+  }, []);
 
   return (
     <Layout>
@@ -38,23 +49,16 @@ export function Counter() {
           width: '100%',
           height: 180,
           backgroundColor: 'white',
-          padding: '12px 24px 0'
+          padding: '12px 24px 0',
+          marginBottom: 16
         }}
       >
-        <PageHeader
-          className='pageHeader'
-          title={<Title>Painel do Contador</Title>}
-        />
+        <PageHeader title={<Title>Painel do Contador</Title>} />
         <HeaderForm />
       </Header>
 
-      <Content
-        style={{
-          margin: '24px 16px',
-          padding: 24
-        }}
-      >
-        <Card title="Clientes">
+      <Content style={{ margin: '16px 32px' }}>
+        <Card title="Clientes" >
           <Table
             rowKey={(record) => record.id}
             dataSource={customerDataList}

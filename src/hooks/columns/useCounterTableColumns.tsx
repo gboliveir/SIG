@@ -1,26 +1,49 @@
-import { PhoneOutlined, WhatsAppOutlined } from "@ant-design/icons";
-import { Button, Col, Row, Space, Typography } from "antd";
+import { Button, Col, Row, Space, Tag, Typography } from "antd";
 
 import { ColumnsType } from "antd/lib/table/interface";
-import { CounterTableDataType, ObligationDataType } from "../../services/CounterService";
+import { EnvelopeSimple, Phone, WhatsappLogo } from "phosphor-react";
+import { CustomerType } from "../../pages/Counter";
 
 const { Text, Link } = Typography;
 
 export function useCounterColumns() {
-  function onFilter(value: string | number | boolean, record: any): boolean {
-    return record.status.includes(String(value));
-  }
+  const contactIcons = [
+    <Phone size={20} style={{ lineHeight: 0 }}/>,
+    <WhatsappLogo size={20} />,
+    <EnvelopeSimple size={20} />
+  ]
 
-  function handleOpenModal(obligations: ObligationDataType[]) {
-    console.log('Abrindo modal');
-  }
+  const statusConfig = [
+    {
+      color: 'red',
+      text: 'Atrasado'
+    },
+    {
+      color: 'green',
+      text: 'Em dias'
+    },
+    {
+      color: 'gold',
+      text: 'Pendente'
+    }
+  ]
 
-  const customerTableColumns: ColumnsType<CounterTableDataType> = [
+  const customerTableColumns: ColumnsType<CustomerType> = [
     {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-      width: 200
+      width: 200,
+      render: (_, record) => {
+        const statusCodeConfig = Number(record.status);
+        const config = statusConfig[statusCodeConfig];
+
+        return (
+          <Tag color={config.color}>
+            {config.text}
+          </Tag>
+        );
+      }
     },
     {
       title: 'CNPJ',
@@ -30,8 +53,8 @@ export function useCounterColumns() {
     },
     {
       title: 'Razão Social',
-      dataIndex: 'corporateName',
-      key: 'corporateName',
+      dataIndex: 'name',
+      key: 'name',
       width: 200
     },
     {
@@ -39,34 +62,31 @@ export function useCounterColumns() {
       dataIndex: 'contacts',
       key: 'contacts',
       width: 250,
-      render: (_, record) => (
-        <Row gutter={[0,6]}>
-          <Col span={24}>
-            <Space>
-              <PhoneOutlined />
-              <Text>{record.contacts.phoneNumber}</Text>
-            </Space>
-          </Col>
+      render: (_, record) => {
+        return (
+          <Row>
+            {record.contacts.map(contact => {
+              const contactType = Number(contact.type);
 
-          <Col span={24}>
-            <Space>
-              <WhatsAppOutlined />
-              <Text>{record.contacts.whatsapp}</Text>
-            </Space>
-          </Col>
-
-          <Col span={24}>
-            <Space>
-              <Link
-                href={`mailto:${record.contacts.email}`}
-                target='_blank'
-              >
-                {record.contacts.email}
-              </Link>
-            </Space>
-          </Col>
-        </Row>
-      ),
+              return (
+                <Col style={{ display: 'flex', gap: 8 }} key={contact.id}>
+                  {contactIcons[contactType]}
+                  {contactType === 2 ? (
+                    <Link
+                      href={`mailto:${contact.contact}`}
+                      target='_blank'
+                    >
+                      {contact.contact}
+                    </Link>
+                  ) : (
+                    <Text>{contact.contact}</Text>
+                  )}
+                </Col>
+              );
+            })}
+          </Row>
+        );
+      },
     },
     {
       title: 'Detalhes',
@@ -74,7 +94,7 @@ export function useCounterColumns() {
       width: 350,
       render: (_, record) => (
         <Space size="middle">
-          <Button type="primary" onClick={() => handleOpenModal(record.obligations)}>
+          <Button type="primary">
             + Acessar lista de documentações
           </Button>
         </Space>
