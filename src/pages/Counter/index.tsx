@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import {
   Card,
@@ -8,37 +7,23 @@ import {
   Table,
   Typography
 } from 'antd';
+import { HeaderForm } from './HeaderForm';
 
 import { useCounterColumns } from '../../hooks/columns/useCounterTableColumns';
 
-import { HeaderForm } from './HeaderForm';
+import { AccountantService, CustomerType } from '../../services/AccountantService';
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
-interface ContactType {
-  id: string;
-  customerId: string;
-  contact: string;
-  type: string;
-}
-
-export interface CustomerType {
-  id: string;
-  cnpj: string;
-  name: string;
-  status: string;
-  contacts: ContactType[],
-}
-
 export function Counter() {
   const [customerDataList, setCustomerDataList] = useState<CustomerType[] | undefined>();
+
   const { customerTableColumns } = useCounterColumns();
+  const accountantService = new AccountantService();
 
   useEffect(() => {
-    axios('http://localhost:3333/customers').then(response => {
-      setCustomerDataList(response.data);
-    })
+    accountantService.getCustomers().then(setCustomerDataList);
   }, []);
 
   return (

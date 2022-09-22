@@ -1,38 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Button, Form, Select } from 'antd';
+import { Button, Form } from 'antd';
+import { FormItem } from '../FormItem';
 
 import { DefaultOptionType } from 'antd/lib/select';
 
-import {
-  getCNPJFilterData,
-  getCustomerFilterData,
-  getStatusFilterData
-} from '../../../services/CounterService';
-import { FormItem } from '../FormItem';
+import { FilterService } from '../../../services/FilterService';
 
 export function HeaderForm() {
-  const [customerFilterList, setCustomerFilterList] = useState<DefaultOptionType[]>(
-    () => {
-      const counterTableData = getCustomerFilterData();
+  const [customerFilterList, setCustomerFilterList] = useState<DefaultOptionType[]>([]);
+  const [CNPJFilterList, setCNPJFilterList] = useState<DefaultOptionType[]>([]);
+  const [statusFilterList, setStatusFilterList] = useState<DefaultOptionType[]>([]);
 
-      return counterTableData;
-    }
-  );
-  const [statusFilterList, setStatusFilterList] = useState<DefaultOptionType[]>(
-    () => {
-      const statusFilterData = getStatusFilterData();
+  const filterService = new FilterService();
 
-      return statusFilterData;
-    }
-  );
-  const [CNPJFilterList, setCNPJFilterList] = useState<DefaultOptionType[]>(
-    () => {
-      const cnpjFilterData = getCNPJFilterData();
-
-      return cnpjFilterData;
-    }
-  );
+  useEffect(() => {
+    filterService.getCustomerOptions().then(setCustomerFilterList);
+    filterService.getCNPJOptions().then(setCNPJFilterList);
+    filterService.getStatusOptions().then(setStatusFilterList);
+  }, []);
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
