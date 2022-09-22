@@ -14,7 +14,7 @@ export interface FilterCnpjType {
 
 export interface FilterStatusType {
   id: string;
-  status: string;
+  name: string;
 }
 
 export class FilterService {
@@ -63,7 +63,7 @@ export class FilterService {
       const filterValues: DefaultOptionType[] = data.map(item => {
         return {
           value: item.id,
-          label: item.status
+          label: item.name
         }
       }) 
 
