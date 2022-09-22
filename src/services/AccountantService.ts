@@ -1,5 +1,9 @@
 import axios from "axios";
 
+interface StatusType {
+  id: string;
+}
+
 export interface ContactType {
   id: string;
   customerId: string;
@@ -11,7 +15,7 @@ export interface CustomerType {
   id: string;
   cnpj: string;
   name: string;
-  status: string;
+  status: StatusType;
   contacts: ContactType[],
 }
 

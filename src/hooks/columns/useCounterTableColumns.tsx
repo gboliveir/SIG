@@ -2,7 +2,7 @@ import { Button, Col, Row, Space, Tag, Typography } from "antd";
 
 import { ColumnsType } from "antd/lib/table/interface";
 import { EnvelopeSimple, Phone, WhatsappLogo } from "phosphor-react";
-import { CustomerType } from "../../pages/Counter";
+import { CustomerType } from "../../services/AccountantService";
 
 const { Text, Link } = Typography;
 
@@ -15,16 +15,16 @@ export function useCounterColumns() {
 
   const statusConfig = [
     {
-      color: 'red',
-      text: 'Atrasado'
-    },
-    {
       color: 'green',
       text: 'Em dias'
     },
     {
       color: 'gold',
       text: 'Pendente'
+    },
+    {
+      color: 'red',
+      text: 'Atrasado'
     }
   ]
 
@@ -35,8 +35,9 @@ export function useCounterColumns() {
       key: 'status',
       width: 200,
       render: (_, record) => {
-        const statusCodeConfig = Number(record.status);
-        const config = statusConfig[statusCodeConfig];
+        console.log(record);
+        const statusCodeConfig = Number(record.status.id);
+        const config = statusConfig[statusCodeConfig - 1];
 
         return (
           <Tag color={config.color}>
@@ -70,7 +71,7 @@ export function useCounterColumns() {
 
               return (
                 <Col style={{ display: 'flex', gap: 8 }} key={contact.id}>
-                  {contactIcons[contactType]}
+                  {contactIcons[contactType - 1]}
                   {contactType === 2 ? (
                     <Link
                       href={`mailto:${contact.contact}`}
