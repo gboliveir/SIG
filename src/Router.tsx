@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { DefaultLayout } from "./layout/DefaultLayout";
 import { Counter } from "./pages/Counter";
-import { Login } from "./pages/login";
+import { Login } from "./pages/Login";
 
 export function Router() {
   return (
