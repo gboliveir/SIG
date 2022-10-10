@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { Layout, MenuProps, Menu } from 'antd';
-import { NotePencil, User, UsersThree, ArrowElbowDownRight, House } from 'phosphor-react';
+import { Layout, MenuProps, Menu, Tooltip } from 'antd';
+import { NotePencil, UsersThree, ArrowElbowDownRight, House } from 'phosphor-react';
 
-import { getItem } from '../../utils/get-item-menu';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -12,23 +11,89 @@ const { Sider } = Layout;
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
 
+  function renderLabelDisabled(menuTitle: string) {
+    return (
+      <Tooltip
+        title='Esté menu ainda está em desenvolvimento e por essa razão ainda não foi disponibilizado.'
+        placement='topLeft'
+      >
+        {menuTitle}
+      </Tooltip>
+    );
+  }
+    
   const menuItems: MenuItem[] = [
-    getItem('Home', 'home-menu-item-1', <House size={20} />),
-    getItem('Painel', 'painel-menu-item-1', <ArrowElbowDownRight size={20} />, [
-      getItem('Painel do contador', 'painel-submenu-item-1'),
-      getItem('Painel do cliente', 'painel-submenu-item-2'),
-    ]),
-    getItem('Clientes', 'customer-menu-item-1', <UsersThree size={20} />, [
-      getItem('Adicionar cliente', 'customer-submenu-item-1'),
-      getItem('Excluir cliente', 'customer-submenu-item-2'),
-    ]),
-    getItem('Obrigações', 'obligation-menu-item-2', <UsersThree size={20} />, [
-      getItem('Adicionar obrigação', 'obligation-submenu-item-1'),
-      getItem('Excluir obrigação', 'obligation-submenu-item-2'),
-    ]),
-    getItem('PDCI', 'pdci-menu-item-3', <NotePencil size={20} />, [
-      getItem('Editar tabela PDCI', 'pdci-submenu-item-1'),
-    ])
+    {
+      label: renderLabelDisabled('Home'),
+      key: 'home-menu-item-1',
+      icon: <House size={20} />,
+      disabled: true,
+    },
+    {
+      label: 'Painel',
+      key: 'painel-menu-item-2',
+      icon: <ArrowElbowDownRight size={20} />,
+      children: [
+        {
+          label: 'Painel do contador',
+          key: 'painel-submenu-item-1',
+        },
+        {
+          label: renderLabelDisabled('Painel do cliente'),
+          key: 'painel-submenu-item-2',
+          disabled: true
+        }
+      ]
+    },
+    {
+      label: renderLabelDisabled('Clientes'),
+      key: 'customer-menu-item-3',
+      icon: <UsersThree size={20} />,
+      disabled: true,
+      children: [
+        {
+          label: renderLabelDisabled('Adicionar cliente'),
+          key: 'customer-submenu-item-1',
+          disabled: true
+        },
+        {
+          label: renderLabelDisabled('Excluir cliente'),
+          key: 'customer-submenu-item-2',
+          disabled: true
+        }
+      ]
+    },
+    {
+      label: renderLabelDisabled('Obrigações'),
+      key: 'obligation-menu-item-4',
+      icon: <UsersThree size={20} />,
+      disabled: true,
+      children: [
+        {
+          label: renderLabelDisabled('Adicionar obrigação'),
+          key: 'obligation-submenu-item-1',
+          disabled: true
+        },
+        {
+          label: renderLabelDisabled('Excluir obrigação'),
+          key: 'obligation-submenu-item-2',
+          disabled: true
+        }
+      ]
+    },
+    {
+      label: renderLabelDisabled('PDCI'),
+      key: 'pdci-menu-item-5',
+      icon: <NotePencil size={20} />,
+      disabled: true,
+      children: [
+        {
+          label: renderLabelDisabled('Editar tabela PDCI'),
+          key: 'pdci-submenu-item-1',
+          disabled: true
+        }
+      ]
+    }
   ];
 
   return (
