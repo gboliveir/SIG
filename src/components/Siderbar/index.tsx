@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Layout, MenuProps, Menu, Tooltip } from 'antd';
 import { NotePencil, UsersThree, ArrowElbowDownRight, House } from 'phosphor-react';
-
+import { useNavigate } from "react-router-dom";
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -10,6 +10,11 @@ const { Sider } = Layout;
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+
+  function handleRedirect(to: string) {
+    navigate(to);
+  }
 
   function renderLabelDisabled(menuTitle: string) {
     return (
@@ -33,10 +38,12 @@ export function Sidebar() {
       label: 'Painel',
       key: 'painel-menu-item-2',
       icon: <ArrowElbowDownRight size={20} />,
+
       children: [
         {
           label: 'Painel do contador',
           key: 'painel-submenu-item-1',
+          onClick: () => handleRedirect('/lmcontabilidade/painel/counter')
         },
         {
           label: renderLabelDisabled('Painel do cliente'),
