@@ -48,7 +48,7 @@ export function Sidebar() {
         {
           label: renderLabelDisabled('Painel do cliente'),
           key: 'painel-submenu-item-2',
-          disabled: true
+          onClick: () => handleRedirect('/lmcontabilidade/painel/customer')
         }
       ]
     },
