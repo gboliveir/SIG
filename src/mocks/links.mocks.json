@@ -1,0 +1,62 @@
+[
+  {
+    "key": 1,
+    "href": "http://idg.receita.fazenda.gov.br/",
+    "linkText": "Receita da Fazenda"
+  },
+  {
+    "key": 2,
+    "href": "http://www.ceara.gov.br/",
+    "linkText": "Governo do Estado do Ceará"
+  },
+  {
+    "key": 3,
+    "href": "http://www.caixa.gov.br/Paginas/home-caixa.aspx",
+    "linkText": "Caixa Econômica Federal"
+  },
+  {
+    "key": 4,
+    "href": "http://www.sefaz.ce.gov.br/content/aplicacao/internet/principal/enviados/index.asp?",
+    "linkText": "Secretaria da Fazenda"
+  },
+  {
+    "key": 5,
+    "href": "http://www.cgu.gov.br/",
+    "linkText": "Controladoria-Geral da União"
+  },
+  {
+    "key": 6,
+    "href": "http://www.bndes.gov.br/",
+    "linkText": "Banco Nacional do Desenvolvimento"
+  },
+  {
+    "key": 7,
+    "href": "http://transparencia.gov.br/",
+    "linkText": "Portal da Transparência"
+  },
+  {
+    "key": 8,
+    "href": "http://www.ibama.gov.br/",
+    "linkText": "Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis"
+  },
+  {
+    "key": 9,
+    "href": "http://www.bb.com.br/portalbb/home29,116,116,1,1,1,1.bb",
+    "linkText": "Banco do Brasil"
+  },
+  {
+    "key": 10,
+    "href": "http://www.semace.ce.gov.br/",
+    "linkText": "Secretaria do Meio Ambiente"
+  },
+  {
+    "key": 11,
+    "href": "http://www.previdencia.gov.br/",
+    "linkText": "Ministério do Trabalho e Previdência"
+  },
+  {
+    "key": 12,
+    "href": "http://www.esocial.gov.br/",
+    "linkText": "eSocial"
+  }
+]

@@ -1,7 +1,10 @@
-import { Carousel, Col, Row, Typography } from "antd";
+import { Card, Carousel, Col, Row, Typography } from "antd";
 import { CarouselItem } from "./CarouselItem";
 
+import usefulLinks from "../../mocks/links.mocks.json";
+
 const { Link, Title, Text } = Typography;
+const { Grid } = Card;
 
 export function Home() {
   return (
@@ -29,6 +32,31 @@ export function Home() {
             description="A empresa tem apenas uma sede localizada na rua xxxxx, nº xxxxx, centro, xx – xx."
           />
         </Carousel>
+      </Col>
+
+      <Col span={24} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+        <Title
+          style={{
+            color: 'purple',
+            fontFamily: 'Rozha One, serif',
+            fontSize: '2.75rem',
+            marginBottom: '3rem',
+            width: '70vw'
+          }}
+        >
+          Aqui você encontra alguns Links úteis para o dia a dia!
+        </Title>
+        <Card style={{ width: '70vw' }}>
+          {usefulLinks.map(usefulLink => {
+            return (
+              <Grid key={usefulLink.key}>
+                <Link href={usefulLink.href}>
+                  {usefulLink.linkText}
+                </Link>
+              </Grid> 
+            );
+          })}
+        </Card>
       </Col>
     </Row>
   );
