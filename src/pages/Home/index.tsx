@@ -1,12 +1,32 @@
-import { Card, Carousel, Col, Row, Typography } from "antd";
+import { Card, Carousel, Col, Divider, List, Row, Tabs, Typography } from "antd";
 import { CarouselItem } from "./CarouselItem";
 
 import usefulLinks from "../../mocks/links.mocks.json";
+import services from "../../mocks/services.mocks.json";
 
 const { Link, Title, Text } = Typography;
 const { Grid } = Card;
+const { Item } = List;
 
 export function Home() {
+  const itemsData = services.map(service => {
+    return ({
+      label: service.area,
+      key: String(service.key),
+      children: (
+        <List
+          bordered
+          dataSource={service.services}
+          renderItem={item => (
+            <Item>
+              <Text>{item.label}</Text>
+            </Item>
+          )}
+        />
+      )
+    });
+  });
+
   return (
     <Row style={{ height: '100vh' }}>
       <Col span={24} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
@@ -57,6 +77,32 @@ export function Home() {
             );
           })}
         </Card>
+      </Col>
+      <Divider />
+      <Col
+        span={24}
+        style={{ height: '100vh', padding: 100 }}
+      >
+        <section
+          style={{
+            width: '70vw',
+            margin: 'auto'
+          }}
+        >
+          <Title
+            style={{
+              color: 'purple',
+              fontFamily: 'Rozha One, serif',
+              fontSize: '2.75rem',
+            }}
+          >
+            Diversos serviços para você solicitar!
+          </Title>
+          <Tabs
+            defaultActiveKey="1"
+            items={itemsData}
+          />
+        </section>
       </Col>
     </Row>
   );

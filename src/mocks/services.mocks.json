@@ -1,0 +1,110 @@
+[
+  {
+    "key": 1,
+    "area": "Acessória em Obrigações Fiscais e Previdenciárias",
+    "services": [
+      {
+        "key": 1,
+        "label": "Escrituração fiscal e ISS Registros"
+      },
+      {
+        "key": 2,
+        "label": "Elaboração das Guias de recolhimento dos tributos estaduais, municipais e federais"
+      },
+      {
+        "key": 3,
+        "label": "Procedimento quanto a classificação tributaria dos produtos o que paga e não paga, o que incidente ou não de tributos federais"
+      },
+      {
+        "key": 4,
+        "label": "Elaboração de documentos para licenças estaduais, federais (IBAMA, semace)"
+      },
+      {
+        "key": 5,
+        "label": "Processo para índice de fumaça de veículos"
+      },
+      {
+        "key": 6,
+        "label": "Envio das informações fiscais ao fisco SPED FISCAL, CONTRIBUIÇÕES, DIEF. DIRF e outros"
+      },
+      {
+        "key": 7,
+        "label": "Emissão de Guias FGTS,INSS,DARF, DANS"
+      },
+      {
+        "key": 8,
+        "label": "Elaboração da folha de pagamento de funcionários"
+      },
+      {
+        "key": 9,
+        "label": "Elaboração da folha de pagamento da empregada domestica"
+      },
+      {
+        "key": 10,
+        "label": "Rescisões contratuais, admissão de empregados e demissão"
+      },
+      {
+        "key": 11,
+        "label": "Elaboração de obrigações acessórias ao fisco (E social, Rais, Caged)"
+      },
+      {
+        "key": 12,
+        "label": "Arquivamento dos documentos de caráter obrigatório"
+      }       
+    ]
+  },
+  {
+    "key": 2,
+    "area": "Acessória em Obrigações Fiscais e Previdenciárias",
+    "services": [
+      {
+        "key": 1,
+        "label": "Escrituração fiscal e ISS Registros"
+      },
+      {
+        "key": 2,
+        "label": "Elaboração das Guias de recolhimento dos tributos estaduais, municipais e federais"
+      },
+      {
+        "key": 3,
+        "label": "Procedimento quanto a classificação tributaria dos produtos o que paga e não paga, o que incidente ou não de tributos federais"
+      },
+      {
+        "key": 4,
+        "label": "Elaboração de documentos para licenças estaduais, federais (IBAMA, semace)"
+      },
+      {
+        "key": 5,
+        "label": "Processo para índice de fumaça de veículos"
+      },
+      {
+        "key": 6,
+        "label": "Envio das informações fiscais ao fisco SPED FISCAL, CONTRIBUIÇÕES, DIEF. DIRF e outros"
+      },
+      {
+        "key": 7,
+        "label": "Emissão de Guias FGTS,INSS,DARF, DANS"
+      },
+      {
+        "key": 8,
+        "label": "Elaboração da folha de pagamento de funcionários"
+      },
+      {
+        "key": 9,
+        "label": "Elaboração da folha de pagamento da empregada domestica"
+      },
+      {
+        "key": 10,
+        "label": "Rescisões contratuais, admissão de empregados e demissão"
+      },
+      {
+        "key": 11,
+        "label": "Elaboração de obrigações acessórias ao fisco (E social, Rais, Caged)"
+      },
+      {
+        "key": 12,
+        "label": "Arquivamento dos documentos de caráter obrigatório"
+      }       
+    ]
+  }
+]
