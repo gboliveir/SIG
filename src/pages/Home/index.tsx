@@ -6,6 +6,7 @@ import services from "../../mocks/services.mocks.json";
 
 import { Layout } from 'antd';
 import { HomeHeader } from "./Header";
+import { AttractiveSection } from "./AttractiveSection";
 
 const { Link, Title, Text } = Typography;
 const { Grid } = Card;
@@ -45,12 +46,8 @@ export function Home() {
       <Layout>
         <Content>
           <Row style={{ height: '100vh' }}>
-            <Col span={24} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-              <Title style={{ color: 'blue' }}>Contabilidade</Title>
-              <Text style={{ display: 'block', marginBottom: '3rem' }} >Uma dimensão do que passou e a projeção do futuro.</Text>
-              <Link href="#contact_us">
-                Contate-nos
-              </Link>
+            <Col span={24}>
+              <AttractiveSection />
             </Col>
 
             <Col span={24} style={{ height: '100vh' }}>
