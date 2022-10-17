@@ -45,12 +45,12 @@ export function Home() {
       <HomeHeader />
       <Layout>
         <Content>
-          <Row style={{ height: '100vh' }}>
+          <Row>
             <Col span={24}>
               <AttractiveSection />
             </Col>
 
-            <Col span={24} style={{ height: '100vh' }}>
+            <Col span={24}>
               <SectionAboutUs />
             </Col>
 
