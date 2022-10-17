@@ -1,15 +1,14 @@
 import { Button, Card, Col, Divider, Form, Input, List, Row, Tabs, Typography } from "antd";
 
-import usefulLinks from "../../mocks/links.mocks.json";
 import services from "../../mocks/services.mocks.json";
 
 import { Layout } from 'antd';
 import { HomeHeader } from "./Header";
 import { AttractiveSection } from "./AttractiveSection";
 import { SectionAboutUs } from "./SectionAboutUs";
+import { SectionLinks } from "./SectionLinks";
 
-const { Link, Title, Text } = Typography;
-const { Grid } = Card;
+const { Title, Text } = Typography;
 const { Item } = List;
 const { Content } = Layout;
 
@@ -54,29 +53,8 @@ export function Home() {
               <SectionAboutUs />
             </Col>
 
-            <Col span={24} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-              <Title
-                style={{
-                  color: 'purple',
-                  fontFamily: 'Rozha One, serif',
-                  fontSize: '2.75rem',
-                  marginBottom: '3rem',
-                  width: '70vw'
-                }}
-              >
-                Aqui você encontra alguns Links úteis para o dia a dia!
-              </Title>
-              <Card style={{ width: '70vw' }}>
-                {usefulLinks.map(usefulLink => {
-                  return (
-                    <Grid key={usefulLink.key}>
-                      <Link href={usefulLink.href}>
-                        {usefulLink.linkText}
-                      </Link>
-                    </Grid> 
-                  );
-                })}
-              </Card>
+            <Col span={24}>
+              <SectionLinks />
             </Col>
             <Divider />
             <Col
