@@ -5,8 +5,6 @@ import { LayoutHeader } from '../components/LayoutHeader';
 
 const { Content } = Layout;
 
-import './styles.scss';
-
 export function DefaultLayout() {
   return (
     <Layout style={{ minHeight: '100vh' }}>
