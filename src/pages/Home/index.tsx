@@ -1,5 +1,4 @@
-import { Button, Card, Carousel, Col, Divider, Form, Input, List, Row, Tabs, Typography } from "antd";
-import { CarouselItem } from "./CarouselItem";
+import { Button, Card, Col, Divider, Form, Input, List, Row, Tabs, Typography } from "antd";
 
 import usefulLinks from "../../mocks/links.mocks.json";
 import services from "../../mocks/services.mocks.json";
