@@ -4,16 +4,8 @@ import { CarouselItem } from "./CarouselItem";
 import usefulLinks from "../../mocks/links.mocks.json";
 import services from "../../mocks/services.mocks.json";
 
-import { Layout, Menu } from 'antd';
-
-import type { MenuProps } from 'antd';
-type MenuItem = Required<MenuProps>['items'][number];
-
-import { User } from 'phosphor-react';
-
-import { getItem } from '../../utils/get-item-menu';
-
-const { Header } = Layout;
+import { Layout } from 'antd';
+import { HomeHeader } from "./Header";
 
 const { Link, Title, Text } = Typography;
 const { Grid } = Card;
@@ -21,28 +13,6 @@ const { Item } = List;
 const { Content } = Layout;
 
 export function Home() {
-  const menuItems: MenuItem[] = [
-    {
-      label: <Text style={{ color: 'white' }}>Usuário</Text>,
-      key: 'user-menu-item-1',
-      icon: <User size={15} />,
-      children: [
-        {
-          label: 'Login',
-          key: 'user-submenu-item-1'
-        },
-        {
-          label: 'Sair',
-          key: 'user-submenu-item-2'
-        },
-        {
-          label: 'Atualizar dados',
-          key: 'user-submenu-item-3'
-        }
-      ]
-    }
-  ];
-
   const itemsData = services.map(service => {
     return ({
       label: service.area,
@@ -71,20 +41,7 @@ export function Home() {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Header
-        className="header"
-        style={{ padding: 0, position: 'fixed', width: '100%', zIndex: 99999 }}
-      >
-        <div className="logo">LMContabilidade</div>
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={['2']}
-          style={{ width: 130 }}
-          items={menuItems}
-        />
-      </Header>
-
+      <HomeHeader />
       <Layout>
         <Content>
           <Row style={{ height: '100vh' }}>
