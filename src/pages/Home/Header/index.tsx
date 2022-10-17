@@ -1,5 +1,6 @@
 import { Layout, Menu, Typography } from 'antd';
 import { User } from 'phosphor-react';
+import { Logo } from '../../../components/Logo';
 
 import type { MenuProps } from 'antd';
 type MenuItem = Required<MenuProps>['items'][number];
@@ -41,21 +42,7 @@ export function HomeHeader() {
         zIndex: 99999
       }}
     >
-      <div
-        style={{
-          width: 150,
-          height: 31,
-          margin: '16px 24px',
-          background: 'rgba(255, 255, 255, 0.3)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 'bold',
-          color: 'white',
-        }}
-      >
-        LMContabilidade
-      </div>
+      <Logo />
       <Menu
         theme="dark"
         mode="horizontal"
