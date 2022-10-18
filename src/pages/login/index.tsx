@@ -1,5 +1,6 @@
-import { Card, Form, Button, Checkbox, Input, Row, Col  } from "antd";
+import { Card, Form, Button, Checkbox, Input  } from "antd";
 import { Key, User } from "phosphor-react";
+import { HomeHeader } from "../Home/Header";
 
 export function Login() {
   const onFinish = (values: any) => {
@@ -11,16 +12,12 @@ export function Login() {
   };
 
   return (
-    <Row
-      justify="center"
-      align="middle"
-      style={{ height: '100%' }}
-    >
-      <Col>
+    <div>
+      <HomeHeader />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', background: '#364d79' }}>
         <Card title="Conecte-se" style={{ width: 600 }}>
           <Form
             name="login"
-            className="login-form"
             initialValues={{ remember: true }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
@@ -66,14 +63,21 @@ export function Login() {
               <Button
                 type="primary"
                 htmlType="submit"
-                style={{ width: '100%', height: 40 }}
+                style={{ width: '100%', height: 40, marginBottom: 20 }}
               >
                 Entrar
+              </Button>
+              <Button
+                type="default"
+                style={{ width: '100%', height: 40 }}
+                href="/lmcontabilidade/home"
+              >
+                Cancelar
               </Button>
             </Form.Item>
           </Form>
         </Card>
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 }
