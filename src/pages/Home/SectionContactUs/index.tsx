@@ -50,7 +50,7 @@ export function SectionContactUs() {
             name="name"
             rules={[{ required: true, message: 'Por favor, insira seu nome!' }]}
           >
-            <Input />
+            <Input type="text" />
           </Form.Item>
 
           <Form.Item
@@ -58,7 +58,7 @@ export function SectionContactUs() {
             name="email"
             rules={[{ required: true, message: 'Por favor, insira um e-mail para contato!' }]}
           >
-            <Input />
+            <Input type="email" />
           </Form.Item>
 
           <Form.Item
@@ -66,13 +66,13 @@ export function SectionContactUs() {
             name="phoneNumber"
             rules={[{ required: true, message: 'Por favor, insira um número para contato!' }]}
           >
-            <Input />
+            <Input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
           </Form.Item>
 
           <Form.Item
             label="Descrição"
             name="description"
-            rules={[{ required: true, message: 'Por favor, insira um número para contato!' }]}
+            rules={[{ required: true, message: 'Por favor, descreva o seu problema ou interesse especifico!' }]}
             style={{ marginBottom: 50 }}
           >
             <TextArea />
