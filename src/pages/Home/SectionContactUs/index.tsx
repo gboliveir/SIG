@@ -15,7 +15,7 @@ export function SectionContactUs() {
   return (
     <section
       style={{
-        background: '#364d79',
+        background: 'white',
         padding: 100
       }}
     >

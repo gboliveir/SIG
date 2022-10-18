@@ -1,4 +1,4 @@
-import { List, Tabs, Typography } from "antd";
+import { Card, List, Tabs, Typography } from "antd";
 import { Title } from "../../../components/Title";
 
 import services from "../../../mocks/services.mocks.json";
@@ -28,18 +28,26 @@ export function SectionServices() {
   return (
     <section
       style={{
-        width: '70vw',
-        margin: 'auto',
         minHeight: '100vh',
         padding: '100px 0',
         background: '#364d79'
       }}
     >
-      <Title text="Diversos serviços para você solicitar!" />
-      <Tabs
-        defaultActiveKey="1"
-        items={itemsData}
-      />
+      <div style={{
+        width: '70vw',
+        margin: 'auto',
+      }}>
+        <Title text="Diversos serviços para você solicitar!" color="white"/>
+        <Card>
+          <Tabs
+            defaultActiveKey="1"
+            items={itemsData}
+            style={{
+              color: "white"
+            }}
+          />
+        </Card>       
+      </div>
     </section>
   );
 }
