@@ -12,11 +12,26 @@ const { Content } = Layout;
 
 export function Home() {
   const sectionList = [
-    <SectionAttractive />,
-    <SectionAboutUs />,
-    <SectionLinks />,
-    <SectionServices />,
-    <SectionContactUs />
+    { 
+      key: 'section-1',
+      component: <SectionAttractive />
+    },
+    { 
+      key: 'section-2',
+      component: <SectionAboutUs />
+    },
+    { 
+      key: 'section-3',
+      component: <SectionLinks />
+    },
+    { 
+      key: 'section-4',
+      component: <SectionServices />
+    },
+    { 
+      key: 'section-5',
+      component: <SectionContactUs />
+    }
   ];
 
   return (
@@ -26,8 +41,8 @@ export function Home() {
         <Content>
           <Row>
             {sectionList.map(section => (
-              <Col span={24}>
-                {section}
+              <Col key={section.key} span={24}>
+                {section.component}
               </Col>
             ))}
           </Row>
