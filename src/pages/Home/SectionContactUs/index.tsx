@@ -1,6 +1,7 @@
 import { Button, Card, Form, Input, Typography } from "antd";
 
 const { Title } = Typography;
+const { TextArea } = Input;
 
 export function SectionContactUs() {
   const onFinish = (values: any) => {
@@ -64,9 +65,17 @@ export function SectionContactUs() {
             label="Número"
             name="phoneNumber"
             rules={[{ required: true, message: 'Por favor, insira um número para contato!' }]}
-            style={{ marginBottom: 50 }}
           >
             <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Descrição"
+            name="description"
+            rules={[{ required: true, message: 'Por favor, insira um número para contato!' }]}
+            style={{ marginBottom: 50 }}
+          >
+            <TextArea />
           </Form.Item>
 
           <Form.Item>
