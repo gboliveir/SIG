@@ -14,15 +14,17 @@ export function SectionContactUs() {
   return (
     <section
       style={{
-        maxWidth: 400,
-        margin: 'auto',
-        textAlign: 'center',
         background: '#364d79',
         padding: 100
       }}
     >
       <Card
         bordered
+        style={{
+          maxWidth: 400,
+          margin: 'auto',
+          textAlign: 'center'
+        }}
       >
         <Title
           style={{ 
