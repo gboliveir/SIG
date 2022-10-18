@@ -1,36 +1,16 @@
-import { Button, Card, Col, Divider, Form, Input, List, Row, Tabs, Typography } from "antd";
-
-import services from "../../mocks/services.mocks.json";
+import { Button, Card, Col, Form, Input, Row, Typography } from "antd";
 
 import { Layout } from 'antd';
 import { HomeHeader } from "./Header";
 import { AttractiveSection } from "./AttractiveSection";
 import { SectionAboutUs } from "./SectionAboutUs";
 import { SectionLinks } from "./SectionLinks";
+import { SectionServices } from "./SectionServices";
 
-const { Title, Text } = Typography;
-const { Item } = List;
+const { Title } = Typography;
 const { Content } = Layout;
 
 export function Home() {
-  const itemsData = services.map(service => {
-    return ({
-      label: service.area,
-      key: String(service.key),
-      children: (
-        <List
-          bordered
-          dataSource={service.services}
-          renderItem={item => (
-            <Item>
-              <Text>{item.label}</Text>
-            </Item>
-          )}
-        />
-      )
-    });
-  });
-
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };
@@ -56,31 +36,9 @@ export function Home() {
             <Col span={24}>
               <SectionLinks />
             </Col>
-            <Divider />
-            <Col
-              span={24}
-              style={{ height: '100vh', padding: 100 }}
-            >
-              <section
-                style={{
-                  width: '70vw',
-                  margin: 'auto'
-                }}
-              >
-                <Title
-                  style={{
-                    color: 'purple',
-                    fontFamily: 'Rozha One, serif',
-                    fontSize: '2.75rem',
-                  }}
-                >
-                  Diversos serviços para você solicitar!
-                </Title>
-                <Tabs
-                  defaultActiveKey="1"
-                  items={itemsData}
-                />
-              </section>
+
+            <Col span={24}>
+              <SectionServices />
             </Col>
 
             <Col
