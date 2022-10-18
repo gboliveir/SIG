@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Layout, Menu, Typography } from 'antd';
 import { User } from 'phosphor-react';
 import { Logo } from '../../../components/Logo';
@@ -9,6 +11,12 @@ const { Header } = Layout;
 const { Text } = Typography;
 
 export function HomeHeader() {
+  const navigate = useNavigate();
+
+  function handleRedirect(to: string) {
+    navigate(to);
+  }
+
   const menuItems: MenuItem[] = [
     {
       label: <Text style={{ color: 'white' }}>Usuário</Text>,
@@ -17,15 +25,18 @@ export function HomeHeader() {
       children: [
         {
           label: 'Login',
-          key: 'user-submenu-item-1'
+          key: 'user-submenu-item-1',
+          onClick: () => handleRedirect('/lmcontabilidade/login')
         },
         {
           label: 'Sair',
-          key: 'user-submenu-item-2'
+          key: 'user-submenu-item-2',
+          disabled: true
         },
         {
           label: 'Atualizar dados',
-          key: 'user-submenu-item-3'
+          key: 'user-submenu-item-3',
+          disabled: true
         }
       ]
     }
