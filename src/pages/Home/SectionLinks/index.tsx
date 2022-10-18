@@ -1,8 +1,9 @@
 import { Card, Typography } from "antd";
+import { Title } from "../../../components/Title";
 
 import usefulLinks from "../../../mocks/links.mocks.json";
 
-const { Link, Title } = Typography;
+const { Link } = Typography;
 const { Grid } = Card;
 
 export function SectionLinks() {
@@ -17,28 +18,20 @@ export function SectionLinks() {
         padding: 100
       }}
     >
-      <Title
-        style={{
-          color: 'purple',
-          fontFamily: 'Rozha One, serif',
-          fontSize: '2.75rem',
-          marginBottom: '3rem',
-          width: '70vw'
-        }}
-      >
-        Aqui você encontra alguns Links úteis para o dia a dia!
-      </Title>
-      <Card style={{ width: '70vw' }}>
-        {usefulLinks.map(usefulLink => {
-          return (
-            <Grid key={usefulLink.key}>
-              <Link href={usefulLink.href}>
-                {usefulLink.linkText}
-              </Link>
-            </Grid> 
-          );
-        })}
-      </Card>
+      <div>
+        <Title text="Aqui você encontra alguns Links úteis para o dia a dia!" />
+        <Card style={{ width: '70vw' }}>
+          {usefulLinks.map(usefulLink => {
+            return (
+              <Grid key={usefulLink.key}>
+                <Link href={usefulLink.href}>
+                  {usefulLink.linkText}
+                </Link>
+              </Grid> 
+            );
+          })}
+        </Card>
+      </div>
     </section>
   );
 }

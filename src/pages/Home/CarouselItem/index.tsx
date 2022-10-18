@@ -1,9 +1,10 @@
 import { Typography } from "antd";
+import { Title } from "../../../components/Title";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 interface CarouselItemProps {
-  title: string;
+  title: string | number;
   description: string;
 }
 
@@ -19,16 +20,7 @@ export function CarouselItem({ title, description }: CarouselItemProps) {
         margin: 'auto'
       }}
     >
-      <Title
-        style={{
-          color: 'white',
-          fontFamily: 'Rozha One, serif',
-          fontSize: '2.75rem'
-        }}
-      >
-        {title}
-      </Title>
-
+      <Title text={title} color="white" />
       <Text 
         style={{
           fontSize: '1.5rem',

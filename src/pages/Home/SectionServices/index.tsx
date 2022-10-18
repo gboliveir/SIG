@@ -1,8 +1,9 @@
 import { List, Tabs, Typography } from "antd";
+import { Title } from "../../../components/Title";
 
 import services from "../../../mocks/services.mocks.json";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 const { Item } = List;
 
 export function SectionServices() {
@@ -30,18 +31,11 @@ export function SectionServices() {
         width: '70vw',
         margin: 'auto',
         minHeight: '100vh',
-        padding: '100px 0'
+        padding: '100px 0',
+        background: '#364d79'
       }}
     >
-      <Title
-        style={{
-          color: 'purple',
-          fontFamily: 'Rozha One, serif',
-          fontSize: '2.75rem',
-        }}
-      >
-        Diversos serviços para você solicitar!
-      </Title>
+      <Title text="Diversos serviços para você solicitar!" />
       <Tabs
         defaultActiveKey="1"
         items={itemsData}

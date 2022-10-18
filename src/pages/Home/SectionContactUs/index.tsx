@@ -1,6 +1,6 @@
-import { Button, Card, Form, Input, Typography } from "antd";
+import { Button, Card, Form, Input } from "antd";
+import { Title } from "../../../components/Title";
 
-const { Title } = Typography;
 const { TextArea } = Input;
 
 export function SectionContactUs() {
@@ -27,16 +27,7 @@ export function SectionContactUs() {
           textAlign: 'center'
         }}
       >
-        <Title
-          style={{ 
-            color: 'purple',
-            fontFamily: 'Rozha One, serif',
-            fontSize: '2.75rem',
-          }}
-        >
-          Contate-nos
-        </Title>
-
+        <Title text="Contate-nos" />
         <Form
           name="basic"
           layout="vertical"

@@ -1,6 +1,7 @@
 import { Typography } from "antd";
+import { Title } from "../../../components/Title";
 
-const { Link, Title, Text } = Typography;
+const { Link, Text } = Typography;
 
 export function SectionAttractive() {
   return (
@@ -14,9 +15,7 @@ export function SectionAttractive() {
         padding: 100
       }}
     >
-      <Title style={{ color: 'blue' }}>
-        Contabilidade
-      </Title>
+      <Title text="LMContabilidade" color="#364d79" />        
       <Text style={{ display: 'block', marginBottom: '3rem' }}>
         Uma dimensão do que passou e a projeção do futuro.
       </Text>
