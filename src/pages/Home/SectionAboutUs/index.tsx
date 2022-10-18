@@ -6,8 +6,8 @@ export function SectionAboutUs() {
     <section>
       <Carousel style={{ padding: 100, minHeight: '100vh', background: '#364d79' }}>
         <CarouselItem 
-          title="Conheça a LM Contabilidade"
-          description="Somos o que forma a razão social L desde 1992. Uma empresa de serviços contábeis, fiscais e de recursos humanos!"
+          title="Conheça a LMContabilidade"
+          description="Somos o que forma a razão social LMContabilidade desde 1992. Uma empresa de serviços contábeis, fiscais e de recursos humanos!"
         />
         <CarouselItem 
           title="Seus profissionais"
