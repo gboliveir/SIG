@@ -11,31 +11,25 @@ import { SectionContactUs } from "./SectionContactUs";
 const { Content } = Layout;
 
 export function Home() {
+  const sectionList = [
+    <SectionAttractive />,
+    <SectionAboutUs />,
+    <SectionLinks />,
+    <SectionServices />,
+    <SectionContactUs />
+  ];
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <HomeHeader />
       <Layout>
         <Content>
           <Row>
-            <Col span={24}>
-              <SectionAttractive />
-            </Col>
-
-            <Col span={24}>
-              <SectionAboutUs />
-            </Col>
-
-            <Col span={24}>
-              <SectionLinks />
-            </Col>
-
-            <Col span={24}>
-              <SectionServices />
-            </Col>
-
-            <Col span={24}>
-              <SectionContactUs />
-            </Col>
+            {sectionList.map(section => (
+              <Col span={24}>
+                {section}
+              </Col>
+            ))}
           </Row>
         </Content>
       </Layout>
