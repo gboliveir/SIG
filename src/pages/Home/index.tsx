@@ -2,7 +2,7 @@ import { Col, Row } from "antd";
 
 import { Layout } from 'antd';
 import { HomeHeader } from "./Header";
-import { AttractiveSection } from "./AttractiveSection";
+import { SectionAttractive } from "./SectionAttractive";
 import { SectionAboutUs } from "./SectionAboutUs";
 import { SectionLinks } from "./SectionLinks";
 import { SectionServices } from "./SectionServices";
@@ -18,7 +18,7 @@ export function Home() {
         <Content>
           <Row>
             <Col span={24}>
-              <AttractiveSection />
+              <SectionAttractive />
             </Col>
 
             <Col span={24}>

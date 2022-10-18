@@ -2,7 +2,7 @@ import { Typography } from "antd";
 
 const { Link, Title, Text } = Typography;
 
-export function AttractiveSection() {
+export function SectionAttractive() {
   return (
     <section
       style={{
