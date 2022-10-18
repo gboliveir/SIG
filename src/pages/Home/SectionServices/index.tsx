@@ -29,8 +29,8 @@ export function SectionServices() {
       style={{
         width: '70vw',
         margin: 'auto',
-        height: '100vh',
-        padding: 100
+        minHeight: '100vh',
+        padding: '100px 0'
       }}
     >
       <Title

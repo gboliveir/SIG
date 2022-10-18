@@ -4,7 +4,7 @@ import { CarouselItem } from "../CarouselItem";
 export function SectionAboutUs() {
   return (
     <section>
-      <Carousel style={{ height: '100vh', background: '#364d79' }}>
+      <Carousel style={{ padding: 100, minHeight: '100vh', background: '#364d79' }}>
         <CarouselItem 
           title="Conheça a LM Contabilidade"
           description="Somos o que forma a razão social L desde 1992. Uma empresa de serviços contábeis, fiscais e de recursos humanos!"

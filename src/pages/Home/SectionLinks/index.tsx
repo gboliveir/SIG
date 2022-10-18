@@ -13,7 +13,8 @@ export function SectionLinks() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh'
+        minHeight: '100vh',
+        padding: 100
       }}
     >
       <Title
