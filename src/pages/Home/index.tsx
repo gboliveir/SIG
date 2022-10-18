@@ -1,4 +1,4 @@
-import { Button, Card, Col, Form, Input, Row, Typography } from "antd";
+import { Col, Row } from "antd";
 
 import { Layout } from 'antd';
 import { HomeHeader } from "./Header";
@@ -6,19 +6,11 @@ import { AttractiveSection } from "./AttractiveSection";
 import { SectionAboutUs } from "./SectionAboutUs";
 import { SectionLinks } from "./SectionLinks";
 import { SectionServices } from "./SectionServices";
+import { SectionContactUs } from "./SectionContactUs";
 
-const { Title } = Typography;
 const { Content } = Layout;
 
 export function Home() {
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
-
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <HomeHeader />
@@ -41,71 +33,8 @@ export function Home() {
               <SectionServices />
             </Col>
 
-            <Col
-              span={24}
-              style={{ background: '#364d79', padding: 100 }}
-            >
-              <section
-                style={{
-                  maxWidth: 400,
-                  margin: 'auto',
-                  textAlign: 'center'
-                }}
-              >
-                <Card
-                  bordered
-                >
-                  <Title
-                    style={{ 
-                      color: 'purple',
-                      fontFamily: 'Rozha One, serif',
-                      fontSize: '2.75rem',
-                    }}
-                  >
-                    Contate-nos
-                  </Title>
-
-                  <Form
-                    name="basic"
-                    layout="vertical"
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    autoComplete="off"
-                  >
-                    <Form.Item
-                      label="Nome"
-                      name="name"
-                      rules={[{ required: true, message: 'Por favor, insira seu nome!' }]}
-                    >
-                      <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                      label="E-mail"
-                      name="email"
-                      rules={[{ required: true, message: 'Por favor, insira um e-mail para contato!' }]}
-                    >
-                      <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Número"
-                      name="phoneNumber"
-                      rules={[{ required: true, message: 'Por favor, insira um número para contato!' }]}
-                      style={{ marginBottom: 50 }}
-                    >
-                      <Input />
-                    </Form.Item>
-
-                    <Form.Item>
-                      <Button type="primary" htmlType="submit">
-                        Enviar
-                      </Button>
-                    </Form.Item>
-                  </Form>
-                </Card>
-              </section>
+            <Col span={24}>
+              <SectionContactUs />
             </Col>
           </Row>
         </Content>
