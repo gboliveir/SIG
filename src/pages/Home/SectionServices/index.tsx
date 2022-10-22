@@ -42,9 +42,6 @@ export function SectionServices() {
           <Tabs
             defaultActiveKey="1"
             items={itemsData}
-            style={{
-              color: "white"
-            }}
           />
         </Card>       
       </div>
