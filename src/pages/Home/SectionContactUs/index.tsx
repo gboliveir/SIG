@@ -1,11 +1,15 @@
 import { Button, Card, Form, Input } from "antd";
 import { Title } from "../../../components/Title";
 
+import { CustomerMessageDataType, CustomerService } from "../../../services/CustomerService";
+
 const { TextArea } = Input;
 
 export function SectionContactUs() {
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
+  const customerService = new CustomerService();
+
+  const onFinish = (values: CustomerMessageDataType) => {
+    customerService.setCustomerMessage(values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
