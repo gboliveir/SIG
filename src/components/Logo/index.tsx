@@ -1,6 +1,10 @@
+import { Typography } from "antd";
+
+const { Link } = Typography;
+
 export function Logo() {
   return (
-    <div
+    <Link
       style={{
         width: 150,
         height: 31,
@@ -12,8 +16,9 @@ export function Logo() {
         fontWeight: 'bold',
         color: 'white',
       }}
+      href="/lmcontabilidade/home"
     >
-      LMContabilidade
-    </div>
+      LM Contabilidade
+    </Link>
   );
 }
