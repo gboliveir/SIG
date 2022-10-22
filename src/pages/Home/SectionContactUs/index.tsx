@@ -12,10 +12,6 @@ export function SectionContactUs() {
     customerService.setCustomerMessage(values);
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
-
   return (
     <section
       id="contact_us"
@@ -38,7 +34,6 @@ export function SectionContactUs() {
           layout="vertical"
           initialValues={{ remember: true }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item
