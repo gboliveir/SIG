@@ -14,6 +14,7 @@ export function SectionContactUs() {
 
   return (
     <section
+      id="contact_us"
       style={{
         background: 'white',
         padding: 100
