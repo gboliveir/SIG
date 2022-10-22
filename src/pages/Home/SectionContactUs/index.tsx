@@ -48,7 +48,7 @@ export function SectionContactUs() {
           <Form.Item
             label="E-mail"
             name="email"
-            rules={[{ required: true, message: 'Por favor, insira um e-mail para contato!' }]}
+            rules={[{ required: true, type: 'email', message: 'Por favor, insira um e-mail valido para contato!' }]}
           >
             <Input type="email" />
           </Form.Item>
@@ -58,7 +58,7 @@ export function SectionContactUs() {
             name="phoneNumber"
             rules={[{ required: true, message: 'Por favor, insira um número para contato!' }]}
           >
-            <Input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+            <Input type="tel" placeholder="88999457684" />
           </Form.Item>
 
           <Form.Item
