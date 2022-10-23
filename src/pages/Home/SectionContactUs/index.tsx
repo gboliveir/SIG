@@ -7,9 +7,19 @@ const { TextArea } = Input;
 
 export function SectionContactUs() {
   const customerService = new CustomerService();
+  const [form] = Form.useForm<CustomerMessageDataType>()
 
-  const onFinish = (values: CustomerMessageDataType) => {
-    customerService.setCustomerMessage(values);
+  const onFinish = async (values: CustomerMessageDataType) => {
+    const initialValues = {
+      description: undefined,
+      name: undefined,
+      email: undefined,
+      phoneNumber: undefined
+    }
+
+    await customerService.setCustomerMessage(values)
+
+    form.setFieldsValue(initialValues)
   };
 
   return (
@@ -32,6 +42,7 @@ export function SectionContactUs() {
         <Form
           name="basic"
           layout="vertical"
+          form={form}
           initialValues={{ remember: true }}
           onFinish={onFinish}
           autoComplete="off"
