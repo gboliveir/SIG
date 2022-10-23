@@ -1,14 +1,49 @@
-import { Card, Form, Button, Checkbox, Input  } from "antd";
+import { Card, Form, Button, Checkbox, Input, Radio  } from "antd";
 import { Key, User } from "phosphor-react";
 import { HomeHeader } from "../Home/Header";
 
-export function Login() {
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+interface RadioOption {
+  label: string;
+  value: string;
+  disabled?: boolean;
+}
+
+interface LoginFormData {
+  email: string;
+  password: string;
+  userType: string;
+  remember: boolean;
+}
+
+export function Login() {
+  const { signIn } = useContext(AuthContext)
+  const [form] = Form.useForm<LoginFormData>()
+
+  const userTypeOptions: RadioOption[] = [
+    {
+      label: 'Cliente',
+      value: 'client'
+    },
+    {
+      label: 'Colaborador',
+      value: 'collaborator'
+    }
+  ];
+
+  const onFinish = async (values: LoginFormData) => {
+    const initialValues = {
+      email: undefined,
+      password: undefined,
+      userType: undefined,
+      remember: undefined
+    }
+
+    await signIn(values)
+
+    form.setFieldsValue(initialValues)
   };
 
   return (
@@ -18,9 +53,10 @@ export function Login() {
         <Card title="Conecte-se" style={{ width: 600 }}>
           <Form
             name="login"
+            layout="vertical"
+            form={form}
             initialValues={{ remember: true }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
             autoComplete="off"
           >
             <Form.Item
@@ -43,6 +79,14 @@ export function Login() {
                 prefix={<Key size={15} />}
                 placeholder="Insira aqui sua senha"
               />
+            </Form.Item>
+
+            <Form.Item
+              label="Tipo de usuário"
+              name="userType"
+              rules={[{ required: true, message: 'Por favor, selecione um tipo de usuário!' }]}
+            >
+              <Radio.Group options={userTypeOptions} />
             </Form.Item>
 
             <Form.Item>
