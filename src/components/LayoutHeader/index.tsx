@@ -1,3 +1,7 @@
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
 import { Layout, Menu, Typography } from 'antd';
 import { User } from 'phosphor-react';
 import { Logo } from '../Logo';
@@ -9,23 +13,32 @@ const { Header } = Layout;
 const { Text } = Typography;
 
 export function LayoutHeader() {
+  const navigate = useNavigate();
+  const { user, getUserInfo, exit } = useContext(AuthContext);
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  function handleRedirect(to: string) {
+    navigate(to);
+  }
+
+  function handleExit() {
+    exit();
+    handleRedirect('/lmcontabilidade/home');
+  }
+ 
   const menuItems: MenuItem[] = [
     {
-      label: <Text style={{ color: 'white' }}>Usuário</Text>,
+      label: <Text style={{ color: 'white' }}>{user?.email}</Text>,
       key: 'user-menu-item-1',
       icon: <User size={15} />,
       children: [
         {
-          label: 'Login',
-          key: 'user-submenu-item-1'
-        },
-        {
           label: 'Sair',
-          key: 'user-submenu-item-2'
-        },
-        {
-          label: 'Atualizar dados',
-          key: 'user-submenu-item-3'
+          key: 'user-submenu-item-2',
+          onClick: handleExit
         }
       ]
     }
@@ -33,7 +46,6 @@ export function LayoutHeader() {
 
   return (
     <Header
-      className="header"
       style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -45,7 +57,7 @@ export function LayoutHeader() {
         theme="dark"
         mode="horizontal"
         defaultSelectedKeys={['2']}
-        style={{ width: 130 }}
+        style={{ width: 240 }}
         items={menuItems}
       />
     </Header>

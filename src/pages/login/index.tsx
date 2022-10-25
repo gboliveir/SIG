@@ -4,6 +4,7 @@ import { HomeHeader } from "../Home/Header";
 
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 interface RadioOption {
   label: string;
@@ -14,13 +15,14 @@ interface RadioOption {
 interface LoginFormData {
   email: string;
   password: string;
-  userType: string;
+  userType: 'client' | 'counter';
   remember: boolean;
 }
 
 export function Login() {
   const { signIn } = useContext(AuthContext)
   const [form] = Form.useForm<LoginFormData>()
+  const navigate = useNavigate();
 
   const userTypeOptions: RadioOption[] = [
     {
@@ -28,12 +30,16 @@ export function Login() {
       value: 'client'
     },
     {
-      label: 'Colaborador',
-      value: 'collaborator'
+      label: 'Contador',
+      value: 'counter'
     }
   ];
 
-  const onFinish = async (values: LoginFormData) => {
+  function handleRedirect(to: string) {
+    navigate(to);
+  }
+
+  const onFinish = (values: LoginFormData) => {
     const initialValues = {
       email: undefined,
       password: undefined,
@@ -41,9 +47,9 @@ export function Login() {
       remember: undefined
     }
 
-    await signIn(values)
-
+    signIn(values)
     form.setFieldsValue(initialValues)
+    handleRedirect('/lmcontabilidade/home')
   };
 
   return (

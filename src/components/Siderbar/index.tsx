@@ -29,28 +29,16 @@ export function Sidebar() {
     
   const menuItems: MenuItem[] = [
     {
-      label: renderLabelDisabled('Home'),
+      label: 'Home',
       key: 'home-menu-item-1',
       icon: <House size={20} />,
-      disabled: true,
+      onClick: () => handleRedirect('/lmcontabilidade/home')
     },
     {
       label: 'Painel',
       key: 'painel-menu-item-2',
       icon: <ArrowElbowDownRight size={20} />,
-
-      children: [
-        {
-          label: 'Painel do contador',
-          key: 'painel-submenu-item-1',
-          onClick: () => handleRedirect('/lmcontabilidade/painel/counter')
-        },
-        {
-          label: renderLabelDisabled('Painel do cliente'),
-          key: 'painel-submenu-item-2',
-          onClick: () => handleRedirect('/lmcontabilidade/painel/customer')
-        }
-      ]
+      onClick: () => handleRedirect('/lmcontabilidade/painel/counter')
     },
     {
       label: renderLabelDisabled('Clientes'),

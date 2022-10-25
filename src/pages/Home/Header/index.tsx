@@ -1,3 +1,5 @@
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '../../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 import { Layout, Menu, Typography } from 'antd';
@@ -12,6 +14,11 @@ const { Text } = Typography;
 
 export function HomeHeader() {
   const navigate = useNavigate();
+  const { user, isAuthenticated, getUserInfo, exit } = useContext(AuthContext);
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
 
   function handleRedirect(to: string) {
     navigate(to);
@@ -19,24 +26,29 @@ export function HomeHeader() {
 
   const menuItems: MenuItem[] = [
     {
-      label: <Text style={{ color: 'white' }}>Usuário</Text>,
+      label: <Text style={{ color: 'white' }}>{isAuthenticated ? user?.email : 'Usuario'}</Text>,
       key: 'user-menu-item-1',
       icon: <User size={15} />,
       children: [
         {
-          label: 'Login',
+          label: 'Entrar',
           key: 'user-submenu-item-1',
+          disabled: isAuthenticated,
           onClick: () => handleRedirect('/lmcontabilidade/login')
         },
         {
           label: 'Sair',
           key: 'user-submenu-item-2',
-          disabled: true
+          disabled: !isAuthenticated,
+          onClick: exit
         },
         {
-          label: 'Atualizar dados',
+          label: 'Acessar painel de acompanhamento',
           key: 'user-submenu-item-3',
-          disabled: true
+          disabled: !isAuthenticated,
+          onClick: () => user?.userType === 'client'
+            ? handleRedirect('/lmcontabilidade/painel/customer')
+            : handleRedirect('/lmcontabilidade/painel/counter')
         }
       ]
     }
@@ -58,7 +70,7 @@ export function HomeHeader() {
         theme="dark"
         mode="horizontal"
         defaultSelectedKeys={['2']}
-        style={{ width: 130 }}
+        style={{ width: isAuthenticated ? 240 : 130 }}
         items={menuItems}
       />
     </Header>
