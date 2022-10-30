@@ -52,7 +52,7 @@ export function LayoutHeader() {
         padding: 0,
       }}
     >
-      <Logo />
+      <Logo style={{ margin: '16px 24px' }}/>
       <Menu
         theme="dark"
         mode="horizontal"

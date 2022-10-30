@@ -65,7 +65,7 @@ export function HomeHeader() {
         zIndex: 99999
       }}
     >
-      <Logo />
+      <Logo style={{ margin: '16px 24px' }}/>
       <Menu
         theme="dark"
         mode="horizontal"

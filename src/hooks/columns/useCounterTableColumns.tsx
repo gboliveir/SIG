@@ -1,7 +1,7 @@
 import { Button, Col, Row, Space, Tag, Typography } from "antd";
 
 import { ColumnsType } from "antd/lib/table/interface";
-import { EnvelopeSimple, Phone, WhatsappLogo } from "phosphor-react";
+import { EnvelopeSimple, Phone, Trash, WhatsappLogo } from "phosphor-react";
 import { CustomerType } from "../../services/AccountantService";
 
 const { Text, Link } = Typography;
@@ -91,12 +91,35 @@ export function useCounterColumns() {
     },
     {
       title: 'Detalhes',
-      key: 'action',
+      key: 'details',
       width: 350,
       render: (_, record) => (
         <Space size="middle">
           <Button type="primary">
             + Acessar lista de documentações
+          </Button>
+        </Space>
+      ),
+    },
+    {
+      title: 'Ações',
+      key: 'action',
+      width: 350,
+      render: () => (
+        <Space size="middle">
+          <Button type="default">
+            Editar
+          </Button>
+          <Button
+            type="text"
+            danger
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Trash size={20} />
           </Button>
         </Space>
       ),
