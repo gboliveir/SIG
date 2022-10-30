@@ -1,11 +1,11 @@
 import { Card, Form, Button, Checkbox, Input, Radio, Col, Row, Typography  } from "antd";
 import { Key, User } from "phosphor-react";
 import { HomeHeader } from "../Home/Header";
+import { Logo } from "../../components/Logo";
 
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Logo } from "../../components/Logo";
 
 interface RadioOption {
   label: string;
