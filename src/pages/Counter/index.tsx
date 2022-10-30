@@ -8,6 +8,7 @@ import {
   Typography
 } from 'antd';
 import { HeaderForm } from './HeaderForm';
+import { UserEditingDrawer } from '../Login/UserEditingDrawer';
 
 import { useCounterColumns } from '../../hooks/columns/useCounterTableColumns';
 
@@ -56,6 +57,7 @@ export function Counter() {
             }}
           />
         </Card>
+        <UserEditingDrawer />
       </Content>
     </Layout>
   )

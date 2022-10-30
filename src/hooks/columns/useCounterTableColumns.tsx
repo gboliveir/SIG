@@ -1,12 +1,19 @@
+import { useContext } from "react";
+
 import { Button, Col, Row, Space, Tag, Typography } from "antd";
 
 import { ColumnsType } from "antd/lib/table/interface";
 import { EnvelopeSimple, Phone, Trash, WhatsappLogo } from "phosphor-react";
+
+import { UserEditingDrawerContext } from "../../contexts/UserEditingDrawerContext";
+
 import { CustomerType } from "../../services/AccountantService";
 
 const { Text, Link } = Typography;
 
 export function useCounterColumns() {
+  const { showDrawer } = useContext(UserEditingDrawerContext);
+
   const contactIcons = [
     <Phone size={20} style={{ lineHeight: 0 }}/>,
     <WhatsappLogo size={20} />,
@@ -105,9 +112,9 @@ export function useCounterColumns() {
       title: 'Ações',
       key: 'action',
       width: 350,
-      render: () => (
+      render: (_, record) => (
         <Space size="middle">
-          <Button type="default">
+          <Button type="default" onClick={() => showDrawer(record)}>
             Editar
           </Button>
           <Button

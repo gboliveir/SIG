@@ -1,6 +1,35 @@
 import { Button, Card, Form, Input, Tabs } from "antd";
+import { CustomerType } from "../../../services/AccountantService";
 
-export function ClientForm() {
+interface ClientFormProps {
+  initialValues?: CustomerType;
+  submitBtnText?: String;
+}
+
+type CustomerFormType = {
+  name: string;
+  cnpj: string;
+  email: string;
+  emailValidation: string;
+  password: string;
+  passwordValidation: string;
+  whatsapp: string;
+  phoneNumber: string;
+}
+
+export function ClientForm({ initialValues, submitBtnText='Criar' }: ClientFormProps) {
+  const [form] = Form.useForm<CustomerFormType>();
+  const initialFormValues: CustomerFormType = {
+    name: initialValues?.name || '',
+    cnpj: initialValues?.cnpj || '',
+    email: '',
+    emailValidation: '',
+    password: '',
+    passwordValidation: '',
+    whatsapp: '',
+    phoneNumber: ''
+  }
+
   const items = [
     {
       key: 'whatsapp',
@@ -35,14 +64,15 @@ export function ClientForm() {
       <Form
         name="register-client-form"
         layout="vertical"
-        initialValues={{ remember: true }}
+        form={form}
+        initialValues={initialFormValues}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
           label="Razão Social"
-          name="corporateName"
+          name="name"
           rules={[{ required: true, message: 'Por favor, insira o nome da empresa!' }]}
         >
           <Input placeholder="Insira aqui o nome da empresa" />
@@ -101,7 +131,7 @@ export function ClientForm() {
             htmlType="submit"
             style={{ width: '100%', height: 40 }}
           >
-            Criar
+            {submitBtnText}
           </Button>
         </Form.Item>
       </Form>
