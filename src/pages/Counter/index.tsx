@@ -13,17 +13,19 @@ import { useCounterColumns } from '../../hooks/columns/useCounterTableColumns';
 
 import { AccountantService, CustomerType } from '../../services/AccountantService';
 
+import { customers } from '../../Constants/customers';
+
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
 export function Counter() {
-  const [customerDataList, setCustomerDataList] = useState<CustomerType[] | undefined>();
+  const [customerDataList, setCustomerDataList] = useState<CustomerType[] | undefined>(customers);
 
   const { customerTableColumns } = useCounterColumns();
   const accountantService = new AccountantService();
 
   useEffect(() => {
-    accountantService.getCustomers().then(setCustomerDataList);
+    // accountantService.getCustomers().then(setCustomerDataList);
   }, []);
 
   return (
@@ -48,6 +50,10 @@ export function Counter() {
             rowKey={(record) => record.id}
             dataSource={customerDataList}
             columns={customerTableColumns}
+            pagination={{
+              defaultCurrent: 1,
+              pageSize: 5
+            }}
           />
         </Card>
       </Content>
