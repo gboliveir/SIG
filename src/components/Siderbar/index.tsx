@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Layout, MenuProps, Menu, Tooltip } from 'antd';
-import { NotePencil, UsersThree, ArrowElbowDownRight, House } from 'phosphor-react';
+import { ArrowElbowDownRight, House, ListChecks, UserList, Kanban } from 'phosphor-react';
 import { useNavigate } from "react-router-dom";
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -41,51 +41,19 @@ export function Sidebar() {
       onClick: () => handleRedirect('/lmcontabilidade/painel/counter')
     },
     {
-      label: renderLabelDisabled('Clientes'),
-      key: 'customer-menu-item-3',
-      icon: <UsersThree size={20} />,
-      disabled: true,
+      label: 'Gestão',
+      key: 'management-menu-item-4',
+      icon: <Kanban size={20} />,
       children: [
         {
-          label: renderLabelDisabled('Adicionar cliente'),
-          key: 'customer-submenu-item-1',
-          disabled: true
+          label: 'Obrigações',
+          key: 'management-submenu-item-1',
+          icon: <ListChecks size={20} />,
         },
         {
-          label: renderLabelDisabled('Excluir cliente'),
-          key: 'customer-submenu-item-2',
-          disabled: true
-        }
-      ]
-    },
-    {
-      label: renderLabelDisabled('Obrigações'),
-      key: 'obligation-menu-item-4',
-      icon: <UsersThree size={20} />,
-      disabled: true,
-      children: [
-        {
-          label: renderLabelDisabled('Adicionar obrigação'),
-          key: 'obligation-submenu-item-1',
-          disabled: true
-        },
-        {
-          label: renderLabelDisabled('Excluir obrigação'),
-          key: 'obligation-submenu-item-2',
-          disabled: true
-        }
-      ]
-    },
-    {
-      label: renderLabelDisabled('PDCI'),
-      key: 'pdci-menu-item-5',
-      icon: <NotePencil size={20} />,
-      disabled: true,
-      children: [
-        {
-          label: renderLabelDisabled('Editar tabela PDCI'),
-          key: 'pdci-submenu-item-1',
-          disabled: true
+          label: 'Clientes',
+          key: 'management-submenu-item-2',
+          icon: <UserList size={20} />,
         }
       ]
     }
