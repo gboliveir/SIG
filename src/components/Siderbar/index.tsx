@@ -1,12 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import { Layout, MenuProps, Menu, Tooltip } from 'antd';
 import { ArrowElbowDownRight, House, ListChecks, UserList, Kanban } from 'phosphor-react';
-import { useNavigate } from "react-router-dom";
 
 type MenuItem = Required<MenuProps>['items'][number];
-
-const { Sider } = Layout;
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -49,6 +47,7 @@ export function Sidebar() {
           label: 'Obrigações',
           key: 'management-submenu-item-1',
           icon: <ListChecks size={20} />,
+          onClick: () => handleRedirect('/lmcontabilidade/painel/management/obligations')
         },
         {
           label: 'Clientes',
@@ -60,7 +59,7 @@ export function Sidebar() {
   ];
 
   return (
-    <Sider
+    <Layout.Sider
       width={200}
       className="site-layout-background"
       collapsible
@@ -75,6 +74,6 @@ export function Sidebar() {
         theme="dark"
         items={menuItems}
       />
-    </Sider>
+    </Layout.Sider>
   );
 }
