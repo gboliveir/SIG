@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import { Button, Form } from 'antd';
-import { FormItem } from '../FormItem';
 
 import { DefaultOptionType } from 'antd/lib/select';
 
 import { FilterService } from '../../../services/FilterService';
+import { StandardizedSelection } from '../../../components/StandardizedSelection';
 
 export function HeaderForm() {
   const [statusFilterList, setStatusFilterList] = useState<DefaultOptionType[]>([]);
@@ -30,7 +30,7 @@ export function HeaderForm() {
         gap: '20px'
       }}
     >
-      <FormItem 
+      <StandardizedSelection 
         label='Status'
         name='status'
         options={statusFilterList}

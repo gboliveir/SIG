@@ -11,7 +11,7 @@ interface FormItemsProps {
   mode?: "multiple" | "tags"
 };
 
-export function FormItem({
+export function StandardizedSelection({
   label,
   name,
   options,
