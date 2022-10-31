@@ -20,7 +20,7 @@ import { UserDocumentationsDrawer } from './UserDocumentationsDrawer';
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
-export function Counter() {
+export function AccountantDashboard() {
   const [customerDataList, setCustomerDataList] = useState<CustomerType[] | undefined>(customers);
 
   const { customerTableColumns } = useCounterColumns();

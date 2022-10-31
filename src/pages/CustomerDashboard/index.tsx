@@ -16,7 +16,7 @@ import { ObligationDataType } from '../../services/CustomerService';
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
-export function Customer() {
+export function CustomerDashboard() {
   const [obligationDataList, setObligationDataList] = useState<ObligationDataType[] | undefined>();
 
   const { obligationTableColumns } = useObligationTableColumns();

@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom";
 
 import { DefaultLayout } from "./layout/DefaultLayout";
 import { Home } from "./pages/Home";
-import { Counter } from "./pages/Counter";
-import { Customer } from "./pages/Customer";
+import { AccountantDashboard } from "./pages/AccountantDashboard";
+import { CustomerDashboard } from "./pages/CustomerDashboard";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 
@@ -15,8 +15,8 @@ export function Router() {
         <Route path="/lmcontabilidade/login" element={<Login />} />
         <Route path="/lmcontabilidade/register" element={<Register />} />
         <Route path="/lmcontabilidade/painel/" element={<DefaultLayout />}>
-          <Route path="/lmcontabilidade/painel/counter" element={<Counter />} />
-          <Route path="/lmcontabilidade/painel/customer" element={<Customer />} />
+          <Route path="/lmcontabilidade/painel/counter" element={<AccountantDashboard />} />
+          <Route path="/lmcontabilidade/painel/customer" element={<CustomerDashboard />} />
         </Route>
       </Route>
     </Routes>
