@@ -1,20 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
-import { Drawer, Table } from "antd";
+import { Table } from "antd";
 
 import { useObligationTableColumns } from '../../../hooks/columns/useObligationTableColumns';
 
 import { UserDocumentationsDrawerContext } from "../../../contexts/UserDocumentationsDrawerContext";
+import { StandardizedDrawer } from "../../../components/StandardizedDrawer";
 
 export function UserDocumentationsDrawer() {
   const { isOpenDocumentationDrawer, closeDocumentationDrawer, obligationDrawerData } = useContext(UserDocumentationsDrawerContext);
   const { obligationTableColumns } = useObligationTableColumns();
 
   return (
-    <Drawer
+    <StandardizedDrawer
       title="Empresa 1"
-      placement='right'
-      width={650}
       onClose={closeDocumentationDrawer}
       open={isOpenDocumentationDrawer}
     >
@@ -23,6 +22,6 @@ export function UserDocumentationsDrawer() {
         dataSource={obligationDrawerData}
         columns={obligationTableColumns}
       />
-    </Drawer>
+    </StandardizedDrawer>
   );
 }
