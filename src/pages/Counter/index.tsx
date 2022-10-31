@@ -15,6 +15,7 @@ import { useCounterColumns } from '../../hooks/columns/useCounterTableColumns';
 import { AccountantService, CustomerType } from '../../services/AccountantService';
 
 import { customers } from '../../Constants/customers';
+import { UserDocumentationsDrawer } from './UserDocumentationsDrawer';
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
@@ -58,6 +59,7 @@ export function Counter() {
           />
         </Card>
         <UserEditingDrawer />
+        <UserDocumentationsDrawer />
       </Content>
     </Layout>
   )

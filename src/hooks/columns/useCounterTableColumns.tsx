@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { Button, Col, Row, Space, Tag, Typography } from "antd";
 
@@ -8,11 +8,13 @@ import { EnvelopeSimple, Phone, Trash, WhatsappLogo } from "phosphor-react";
 import { UserEditingDrawerContext } from "../../contexts/UserEditingDrawerContext";
 
 import { CustomerType } from "../../services/AccountantService";
+import { UserDocumentationsDrawerContext } from "../../contexts/UserDocumentationsDrawerContext";
 
 const { Text, Link } = Typography;
 
 export function useCounterColumns() {
   const { showDrawer } = useContext(UserEditingDrawerContext);
+  const { showDocumentationDrawer } = useContext(UserDocumentationsDrawerContext);
 
   const contactIcons = [
     <Phone size={20} style={{ lineHeight: 0 }}/>,
@@ -102,7 +104,7 @@ export function useCounterColumns() {
       width: 350,
       render: (_, record) => (
         <Space size="middle">
-          <Button type="primary">
+          <Button type="primary" onClick={showDocumentationDrawer}>
             + Acessar lista de documentações
           </Button>
         </Space>
