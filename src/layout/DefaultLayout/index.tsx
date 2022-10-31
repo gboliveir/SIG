@@ -1,14 +1,14 @@
 import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
-import { Sidebar } from '../components/Siderbar';
-import { LayoutHeader } from '../components/LayoutHeader';
+import { Sidebar } from './Siderbar';
+import { Header } from './Header';
 
 const { Content } = Layout;
 
 export function DefaultLayout() {
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <LayoutHeader />
+      <Header />
 
       <Layout>
         <Sidebar />

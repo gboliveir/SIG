@@ -1,18 +1,15 @@
 import { useContext, useEffect } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 import { Layout, Menu, Typography } from 'antd';
 import { User } from 'phosphor-react';
-import { Logo } from '../Logo';
+import { Logo } from '../../../components/Logo';
 
 import type { MenuProps } from 'antd';
 type MenuItem = Required<MenuProps>['items'][number];
 
-const { Header } = Layout;
-const { Text } = Typography;
-
-export function LayoutHeader() {
+export function Header() {
   const navigate = useNavigate();
   const { user, getUserInfo, exit } = useContext(AuthContext);
 
@@ -31,7 +28,7 @@ export function LayoutHeader() {
  
   const menuItems: MenuItem[] = [
     {
-      label: <Text style={{ color: 'white' }}>{user?.email}</Text>,
+      label: <Typography.Text style={{ color: 'white' }}>{user?.email}</Typography.Text>,
       key: 'user-menu-item-1',
       icon: <User size={15} />,
       children: [
@@ -45,7 +42,7 @@ export function LayoutHeader() {
   ];
 
   return (
-    <Header
+    <Layout.Header
       style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -60,6 +57,6 @@ export function LayoutHeader() {
         style={{ width: 240 }}
         items={menuItems}
       />
-    </Header>
+    </Layout.Header>
   );
 }
