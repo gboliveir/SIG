@@ -3,18 +3,15 @@ import { useEffect, useState } from 'react';
 import {
   Card,
   Layout,
-  PageHeader,
   Table,
-  Typography
 } from 'antd';
+import { Header } from '../../components/Header';
 import { HeaderForm } from './HeaderForm';
 
 import { CustomerService } from '../../services/CustomerService';
-import { useObligationTableColumns } from '../../hooks/columns/useObligationTableColumns';
 import { ObligationDataType } from '../../services/CustomerService';
 
-const { Header, Content } = Layout;
-const { Title } = Typography;
+import { useObligationTableColumns } from '../../hooks/columns/useObligationTableColumns';
 
 export function CustomerDashboard() {
   const [obligationDataList, setObligationDataList] = useState<ObligationDataType[] | undefined>();
@@ -28,21 +25,11 @@ export function CustomerDashboard() {
 
   return (
     <Layout>
-      <Header
-        style={{
-          zIndex: 1,
-          width: '100%',
-          height: 180,
-          backgroundColor: 'white',
-          padding: '12px 24px 0',
-          marginBottom: 16
-        }}
-      >
-        <PageHeader title={<Title>Painel do Cliente</Title>} />
+      <Header title="Painel do Cliente">
         <HeaderForm />
       </Header>
 
-      <Content style={{ margin: '16px 32px' }}>
+      <Layout.Content style={{ margin: '16px 32px' }}>
         <Card title="Obrigações" >
           <Table
             rowKey={(record) => record.id}
@@ -50,7 +37,7 @@ export function CustomerDashboard() {
             columns={obligationTableColumns}
           />
         </Card>
-      </Content>
+      </Layout.Content>
     </Layout>
   )
 }

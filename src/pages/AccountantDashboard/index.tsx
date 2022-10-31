@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react';
 import {
   Card,
   Layout,
-  PageHeader,
   Table,
-  Typography
 } from 'antd';
+import { Header } from '../../components/Header';
 import { HeaderForm } from './HeaderForm';
 import { UserEditingDrawer } from './UserEditingDrawer';
 
@@ -16,9 +15,6 @@ import { AccountantService, CustomerType } from '../../services/AccountantServic
 
 import { customers } from '../../Constants/customers';
 import { UserDocumentationsDrawer } from './UserDocumentationsDrawer';
-
-const { Header, Content } = Layout;
-const { Title } = Typography;
 
 export function AccountantDashboard() {
   const [customerDataList, setCustomerDataList] = useState<CustomerType[] | undefined>(customers);
@@ -32,21 +28,11 @@ export function AccountantDashboard() {
 
   return (
     <Layout>
-      <Header
-        style={{
-          zIndex: 1,
-          width: '100%',
-          height: 180,
-          backgroundColor: 'white',
-          padding: '12px 24px 0',
-          marginBottom: 16
-        }}
-      >
-        <PageHeader title={<Title>Painel do Contador</Title>} />
+      <Header title="Painel do Contador">
         <HeaderForm />
       </Header>
 
-      <Content style={{ margin: '16px 32px' }}>
+      <Layout.Content style={{ margin: '16px 32px' }}>
         <Card title="Clientes" >
           <Table
             rowKey={(record) => record.id}
@@ -60,7 +46,7 @@ export function AccountantDashboard() {
         </Card>
         <UserEditingDrawer />
         <UserDocumentationsDrawer />
-      </Content>
+      </Layout.Content>
     </Layout>
   )
 }
