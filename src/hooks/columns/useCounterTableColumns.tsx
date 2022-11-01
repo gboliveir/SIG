@@ -37,8 +37,8 @@ export function useCounterColumns() {
   ];
 
   const showDeleteConfirm = () => ConfirmModal({
-    title: 'Deseja mesmo deletar esse tributo da lista de obrigações para este cliente?',
-    content: 'Após confirmação é possível adicionar-lo novamente no menu clicando em "Gestão" e em seguida "Clientes".'
+    title: 'Deseja mesmo deletar este cliente da base de dados?',
+    content: 'Caso SIM o cliente e todas as obrigações vinculadas ao mesmo serão permanentemente deletadas. Apenas com um novo cadastro será spossível adiciona-lo novamente a base de dados da empresa.'
   })
 
   const customerTableColumns: ColumnsType<CustomerType> = [
