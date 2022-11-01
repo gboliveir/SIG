@@ -12,9 +12,9 @@ export function ConfirmModal({ title, content }: ConfirmModalProps) {
       title,
       content,
       icon: <ExclamationCircleOutlined />,
-      okText: 'Yes',
+      okText: 'Sim',
       okType: 'danger',
-      cancelText: 'No',
+      cancelText: 'Não',
       onOk() {
         return new Promise((resolve, reject) => {
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
