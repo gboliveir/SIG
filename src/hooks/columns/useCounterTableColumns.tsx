@@ -4,6 +4,7 @@ import { Button, Col, Row, Space, Tag, Typography } from "antd";
 
 import { ColumnsType } from "antd/lib/table/interface";
 import { EnvelopeSimple, Phone, Trash, WhatsappLogo } from "phosphor-react";
+import { ConfirmModal } from "../../components/ConfirmModal";
 
 import { UserEditingDrawerContext } from "../../contexts/UserEditingDrawerContext";
 
@@ -15,13 +16,11 @@ const { Text, Link } = Typography;
 export function useCounterColumns() {
   const { showDrawer } = useContext(UserEditingDrawerContext);
   const { showDocumentationDrawer } = useContext(UserDocumentationsDrawerContext);
-
   const contactIcons = [
     <Phone size={20} style={{ lineHeight: 0 }}/>,
     <WhatsappLogo size={20} />,
     <EnvelopeSimple size={20} />
-  ]
-
+  ];
   const statusConfig = [
     {
       color: 'green',
@@ -35,7 +34,12 @@ export function useCounterColumns() {
       color: 'red',
       text: 'Atrasado'
     }
-  ]
+  ];
+
+  const showDeleteConfirm = () => ConfirmModal({
+    title: 'Deseja mesmo deletar esse tributo da lista de obrigações para este cliente?',
+    content: 'Após confirmação é possível adicionar-lo novamente no menu clicando em "Gestão" e em seguida "Clientes".'
+  })
 
   const customerTableColumns: ColumnsType<CustomerType> = [
     {
@@ -44,7 +48,6 @@ export function useCounterColumns() {
       key: 'status',
       width: 200,
       render: (_, record) => {
-        console.log(record);
         const statusCodeConfig = Number(record.status.id);
         const config = statusConfig[statusCodeConfig - 1];
 
@@ -122,6 +125,7 @@ export function useCounterColumns() {
           <Button
             type="text"
             danger
+            onClick={showDeleteConfirm}
             style={{
               display: 'flex',
               alignItems: 'center',
