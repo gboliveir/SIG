@@ -12,8 +12,8 @@ interface UseManagementObligationColumnsProps {
 
 export function useManagementObligationColumns({ showDrawer }: UseManagementObligationColumnsProps) {
   const showDeleteConfirm = () => ConfirmModal({
-    title: 'Deseja mesmo deletar PERMANENTEMENTE esse tributo da lista de obrigações ?',
-    content: 'Após confirmação não será possível restaura-lo.'
+    title: 'Deseja mesmo deletar esse tributo da lista de obrigações ?',
+    content: 'Se sim não será possível restaura-lo de imediato. O mesmo pode ser cadastrado novamente na aba de gestão de obrigações.'
   })
 
   const managementObligationColumns: ColumnsType<ObligationDataType> = [
