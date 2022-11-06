@@ -33,28 +33,21 @@ export function Sidebar() {
       onClick: () => handleRedirect('/lmcontabilidade/home')
     },
     {
-      label: 'Painel',
+      label: 'Acompanhamento',
       key: 'painel-menu-item-2',
       icon: <ArrowElbowDownRight size={20} />,
       onClick: () => handleRedirect('/lmcontabilidade/painel/counter')
     },
     {
-      label: 'Gestão',
-      key: 'management-menu-item-4',
-      icon: <Kanban size={20} />,
-      children: [
-        {
-          label: 'Obrigações',
-          key: 'management-submenu-item-1',
-          icon: <ListChecks size={20} />,
-          onClick: () => handleRedirect('/lmcontabilidade/painel/management/obligations')
-        },
-        {
-          label: 'Clientes',
-          key: 'management-submenu-item-2',
-          icon: <UserList size={20} />,
-        }
-      ]
+      label: 'Obrigações',
+      key: 'management-submenu-item-1',
+      icon: <ListChecks size={20} />,
+      onClick: () => handleRedirect('/lmcontabilidade/painel/management/obligations')
+    },
+    {
+      label: 'Clientes',
+      key: 'management-submenu-item-2',
+      icon: <UserList size={20} />,
     }
   ];
 
