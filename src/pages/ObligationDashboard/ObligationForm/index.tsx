@@ -1,18 +1,56 @@
-import { Button, Card, Form, Input } from "antd";
+import { Button, Card, Col, DatePicker, Form, Input, Row, Tag, Tooltip } from "antd";
+import { FormInstance } from "antd/es/form/Form";
+import moment from "moment";
+import { useState } from "react";
 import { UploadButton } from "../UploadButton";
 
-export function ObligationForm() {
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
+interface ObligationFormData {
+  form: FormInstance;
+  onFinish: (values: any) => void;
+}
+
+export function ObligationForm({ form, onFinish }: ObligationFormData) {
+  const [finalDeliveryDate, setFinalDeliveryDate] = useState<moment.Moment | null>(null);
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
 
+  function handleChangedDataPick(value: moment.Moment | null) {
+    setFinalDeliveryDate(value)
+  }
+
+  function renderFinalDeliveryTag(finalDeliveryDate: moment.Moment | null) {
+    if (finalDeliveryDate) {
+      const tagConfigs = [
+        {
+          color: 'red',
+          tooltipTitle: 'A data final de entrega para está documentação já passou, por essa razão a mesma será cadastrada como "Atrasada". Todo e qualquer cliente que tiver vinculo com está obrigação terá seu status geral atualizado para "Em atraso".',
+          text: 'Atrasada'
+        },
+        {
+          color: 'yellow',
+          tooltipTitle: 'A data final de entrega para está documentação ainda não passou, por essa razão a mesma será cadastrada como "Pendente". Todo e qualquer cliente que tiver vinculo com está obrigação terá seu status geral atualizado para "Em dias".',
+          text: 'Pendente'
+        },
+      ];
+      const finalDeliveryDateHasPassed = finalDeliveryDate < moment();
+      const tagConfig = finalDeliveryDateHasPassed ? tagConfigs[0] : tagConfigs[1];
+
+      return (
+        <Tooltip title={tagConfig.tooltipTitle}>
+          <Tag color={tagConfig.color}>{tagConfig.text}</Tag>
+        </Tooltip>
+      )
+    }
+
+    return null;
+  }
+
   return (
-    <Card style={{ width: 600 }}>
+    <Card>
       <Form
+        form={form}
         name="obligation-form"
         layout="vertical"
         initialValues={{ remember: true }}
@@ -22,28 +60,33 @@ export function ObligationForm() {
       >
         <Form.Item
           label="Tributo/Obrigação"
-          name="obligation"
+          name="name"
           rules={[{ required: true, message: 'Por favor, insira um nome!' }]}
         >
-          <Input placeholder="Insira aqui o nome" />
+          <Input placeholder="Insira aqui o nome da obrigação" />
         </Form.Item>
 
-        <Form.Item
-          label="Data final de entrega"
-          name="finalDeliveryDate"
-          rules={[{ required: true, message: 'Por favor, insira um e-mail para futuro acesso!' }]}
-        >
-          <Input placeholder="Insira aqui o e-mail" />
+        <Form.Item label="Data final de entrega">
+          <Row gutter={[24, 0]}>
+            <Col>
+              <Form.Item
+                name="finalDeliveryDate"
+                rules={[{ required: true, message: 'Por favor, insira um prazo para a entrega!' }]}
+              >
+                <DatePicker onChange={handleChangedDataPick} value={finalDeliveryDate}/>
+              </Form.Item>
+            </Col>
+            <Col>{renderFinalDeliveryTag(finalDeliveryDate)}</Col>
+          </Row>
         </Form.Item>
 
         <Form.Item
           label="Anexo"
           name="attatchment"
-          rules={[{ required: true, message: 'Por favor, repita aqui seu e-mail para validação!' }]}
+          rules={[{ required: true, message: 'Por favor, vincule ao menos uma documentação!' }]}
         >
           <UploadButton 
             name="obligations-file"
-            multiple={false}
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           />
         </Form.Item>
@@ -54,7 +97,7 @@ export function ObligationForm() {
             htmlType="submit"
             style={{ width: '100%', height: 40 }}
           >
-            Salvar
+            Adicionar
           </Button>
         </Form.Item>
       </Form>

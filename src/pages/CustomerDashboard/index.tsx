@@ -9,12 +9,12 @@ import { Header } from '../../components/Header';
 import { HeaderForm } from './HeaderForm';
 
 import { CustomerService } from '../../services/CustomerService';
-import { ObligationDataType } from '../../services/CustomerService';
+import { ObligationType } from '../../services/CustomerService';
 
 import { useObligationTableColumns } from '../../hooks/columns/useObligationTableColumns';
 
 export function CustomerDashboard() {
-  const [obligationDataList, setObligationDataList] = useState<ObligationDataType[] | undefined>();
+  const [obligationDataList, setObligationDataList] = useState<ObligationType[] | undefined>();
 
   const { obligationTableColumns } = useObligationTableColumns();
   const customerService = new CustomerService();

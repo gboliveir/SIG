@@ -1,42 +1,37 @@
-export const obligations = [
+import moment from "moment";
+import { ObligationType } from "../services/CustomerService";
+
+export const obligations: ObligationType[] = [
   {
     id: '1',
-    status: {
-      id: '1'
-    },
-    finalDeliveryDate: '31/10/2022',
-    obligation: 'Tributo 1',
+    status: 'Atrasada',
+    finalDeliveryDate: moment(),
+    name: 'Tributo 1',
     description: 'Descrição 1',
-    documentFile: false,
+    attatchment: false,
   },
   {
-    id: '1',
-    status: {
-      id: '1'
-    },
-    finalDeliveryDate: '31/10/2022',
-    obligation: 'Tributo 1',
+    id: '2',
+    status: 'Atrasada',
+    finalDeliveryDate: moment(),
+    name: 'Tributo 1',
     description: 'Descrição 1',
-    documentFile: false,
+    attatchment: false,
   },
   {
-    id: '1',
-    status: {
-      id: '1'
-    },
-    finalDeliveryDate: '31/10/2022',
-    obligation: 'Tributo 1',
+    id: '3',
+    status: 'Atrasada',
+    finalDeliveryDate: moment(),
+    name: 'Tributo 1',
     description: 'Descrição 1',
-    documentFile: false,
+    attatchment: false,
   },
   {
-    id: '1',
-    status: {
-      id: '1'
-    },
-    finalDeliveryDate: '31/10/2022',
-    obligation: 'Tributo 1',
+    id: '4',
+    status: 'Atrasada',
+    finalDeliveryDate: moment(),
+    name: 'Tributo 1',
     description: 'Descrição 1',
-    documentFile: false,
-  }
+    attatchment: false,
+  },
 ]

@@ -13,7 +13,12 @@ import { UserDocumentationsDrawerContext } from "../../contexts/UserDocumentatio
 
 const { Text, Link } = Typography;
 
-export function useCounterColumns() {
+interface UseuseCounterColumnsData {
+  onDelete: (recordInfo: CustomerType) => void;
+  onEdit: (recordInfo: CustomerType) => void;
+}
+
+export function useCounterColumns({ onDelete, onEdit }: UseuseCounterColumnsData) {
   const { showDrawer } = useContext(UserEditingDrawerContext);
   const { showDocumentationDrawer } = useContext(UserDocumentationsDrawerContext);
   const contactIcons = [
@@ -36,9 +41,10 @@ export function useCounterColumns() {
     }
   ];
 
-  const showDeleteConfirm = () => ConfirmModal({
+  const showDeleteConfirm = (recordInfo: CustomerType) => ConfirmModal({
     title: 'Deseja mesmo deletar este cliente da base de dados?',
-    content: 'Caso SIM o cliente e todas as obrigações vinculadas ao mesmo serão permanentemente deletadas. Apenas com um novo cadastro será spossível adiciona-lo novamente a base de dados da empresa.'
+    content: 'Caso SIM o cliente e todas as obrigações vinculadas ao mesmo serão permanentemente deletadas. Apenas com um novo cadastro será spossível adiciona-lo novamente a base de dados da empresa.',
+    onDelete: () => onDelete(recordInfo)
   })
 
   const customerTableColumns: ColumnsType<CustomerType> = [
@@ -125,7 +131,7 @@ export function useCounterColumns() {
           <Button
             type="text"
             danger
-            onClick={showDeleteConfirm}
+            onClick={() => showDeleteConfirm(record)}
             style={{
               display: 'flex',
               alignItems: 'center',

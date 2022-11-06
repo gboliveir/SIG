@@ -4,9 +4,10 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 interface ConfirmModalProps {
   title: string;
   content: string;
+  onDelete: () => void;
 }
 
-export function ConfirmModal({ title, content }: ConfirmModalProps) {
+export function ConfirmModal({ title, content, onDelete }: ConfirmModalProps) {
   return (
     Modal.confirm({
       title,
@@ -16,9 +17,7 @@ export function ConfirmModal({ title, content }: ConfirmModalProps) {
       okType: 'danger',
       cancelText: 'Não',
       onOk() {
-        return new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-        }).catch(() => console.log('Oops errors!'));
+        return onDelete();
       },
       onCancel() {},
     })

@@ -1,16 +1,14 @@
 import axios from "axios";
 
-interface StatusType {
-  id: string;
-}
+export type StatusType = 'Atrasada' | 'Pendente'; 
 
-export interface ObligationDataType { 
+export type ObligationType = { 
   id: string;
   status: StatusType;
-  finalDeliveryDate: string;
-  obligation: string;
+  finalDeliveryDate: moment.Moment;
+  name: string;
   description: string;
-  documentFile: boolean; //remover depois
+  attatchment: any; //remover depois
 }
 
 export interface CustomerMessageDataType { 
@@ -21,7 +19,7 @@ export interface CustomerMessageDataType {
 }
 
 export class CustomerService {
-  getObligations(): Promise<ObligationDataType[]> {
+  getObligations(): Promise<ObligationType[]> {
     return axios('http://localhost:3333/painel/customer/obligations')
       .then(response => response.data)
       .catch(console.log)

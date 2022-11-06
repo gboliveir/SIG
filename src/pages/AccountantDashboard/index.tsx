@@ -19,8 +19,16 @@ import { UserDocumentationsDrawer } from './UserDocumentationsDrawer';
 export function AccountantDashboard() {
   const [customerDataList, setCustomerDataList] = useState<CustomerType[] | undefined>(customers);
 
-  const { customerTableColumns } = useCounterColumns();
+  const { customerTableColumns } = useCounterColumns({ onDelete, onEdit });
   const accountantService = new AccountantService();
+
+  function onDelete(record: CustomerType) {
+
+  }
+
+  function onEdit(obligation: CustomerType) {
+
+  }
 
   useEffect(() => {
     // accountantService.getCustomers().then(setCustomerDataList);

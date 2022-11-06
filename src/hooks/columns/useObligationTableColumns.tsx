@@ -2,7 +2,7 @@ import { DownloadOutlined, FileDoneOutlined, FileOutlined } from "@ant-design/ic
 import { Button, Space, Tag } from "antd";
 
 import { ColumnsType } from "antd/lib/table/interface";
-import { ObligationDataType } from "../../services/CustomerService";
+import { ObligationType } from "../../services/CustomerService";
 
 export function useObligationTableColumns() {
   const statusConfig = [
@@ -20,14 +20,14 @@ export function useObligationTableColumns() {
     }
   ]
 
-  const obligationTableColumns: ColumnsType<ObligationDataType> = [
+  const obligationTableColumns: ColumnsType<ObligationType> = [
     {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
       width: 150,
       render: (_, record) => {
-        const statusCodeConfig = Number(record.status.id);
+        const statusCodeConfig = Number(record.status);
         const config = statusConfig[statusCodeConfig - 1];
 
         return (
@@ -55,8 +55,8 @@ export function useObligationTableColumns() {
       width: 150,
       render: (_, record) => (
         <Space size="middle">
-          {record.documentFile ? <FileDoneOutlined /> : <FileOutlined />} 
-          <Button disabled={!record.documentFile}>
+          {record.attatchment ? <FileDoneOutlined /> : <FileOutlined />} 
+          <Button disabled={!record.attatchment}>
             <DownloadOutlined />
           </Button>
         </Space>
