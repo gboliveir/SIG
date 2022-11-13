@@ -95,13 +95,14 @@ export function AccountantDashboard() {
       key: 'name',
       width: 150,
       render: (_, record) => {
-        const statusCodeConfig = Number(record.status);
-        const config = obligationTagsConfig[statusCodeConfig - 1];
+        const tagConfig = obligationTagsConfig[record.status];
 
         return (
-          <Tag color={config.color}>
-            {config.text}
-          </Tag>
+          <Tooltip title={tagConfig.tooltipTitle}>
+            <Tag color={tagConfig.color}>
+              {tagConfig.text}
+            </Tag>
+          </Tooltip>
         );
       }
     },

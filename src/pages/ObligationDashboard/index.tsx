@@ -1,31 +1,117 @@
-import { useState } from 'react';
 import moment from 'moment';
 
 import {
   Button,
   Card,
   Col,
-  Form,
   Layout,
   Row,
+  Space,
   Table,
   Tabs,
+  Tag,
   Tooltip,
   Typography
 } from 'antd';
 import { Header } from '../../components/Header';
 import { HeaderForm } from './HeaderForm';
 
-import { ObligationType, StatusType } from '../../services/CustomerService';
-import { useManagementObligationColumns } from '../../hooks/columns/useManagementObligationColumns';
-import { obligations } from '../../Constants/obligations';
+import { ObligationType } from '../../services/CustomerService';
 import { ObligationForm } from './ObligationForm';
+import { Trash } from 'phosphor-react';
+import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/icons';
+import { ConfirmModal } from '../../components/ConfirmModal';
+import { ColumnsType } from 'antd/lib/table';
+import { useManagementObligationController } from '../../hooks/controllers/useManagementObligationController';
 
 export function ObligationDashboard() {
-  const [form] = Form.useForm();
-  const [obligationsData, setObligationsData] = useState<ObligationType[]>(obligations);
-  const [newObligationsData, setNewObligationsData] = useState<ObligationType[]>([]);
-  const { obligationRecordColumns } = useManagementObligationColumns({ onDelete, onEdit });
+  const {
+    form,
+    obligationsData,
+    newObligationsData,
+    obligationTagsConfig,
+    handleSubmitForm,
+    handleDeleteObligation,
+    handleEditObligation
+  } = useManagementObligationController();
+
+  const showDeleteConfirm = (recordInfo: ObligationType) => ConfirmModal({
+    title: 'Deseja mesmo deletar esse tributo da lista de obrigações ?',
+    content: 'Se sim não será possível restaura-lo de imediato. O mesmo pode ser cadastrado novamente na aba de gestão de obrigações.',
+    onDelete: () => handleDeleteObligation(recordInfo),
+  })
+
+  const obligationRecordColumns: ColumnsType<ObligationType> = [
+    {
+      title: 'status',
+      dataIndex: 'status',
+      key: 'status',
+      render: (_, record) => {
+        const tagConfig = obligationTagsConfig[record.status];
+
+        return (
+          <Tooltip title={tagConfig.tooltipTitle}>
+            <Tag color={tagConfig.color}>
+              {tagConfig.text}
+            </Tag>
+          </Tooltip>
+        );
+      }
+    },
+    {
+      title: 'Tributo/Obrigação',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Data final de entrega',
+      dataIndex: 'finalDeliveryDate',
+      key: 'finalDeliveryDate',
+      render: (_, record) => {
+        return (
+          <Typography.Text>
+            {moment(record.finalDeliveryDate.format('L'), 'DD/MM/YYYY').format('L')}
+          </Typography.Text>
+        )
+      } 
+    },
+    {
+      title: 'Anexo',
+      key: 'attatchment',
+      render: (_, record) => (
+        <Space size="middle">
+          {record.attatchment ? <FileDoneOutlined /> : <FileOutlined />} 
+          <Button disabled={!record.attatchment}>
+            <DownloadOutlined />
+          </Button>
+        </Space>
+      ),
+    },
+    {
+      title: 'Ações',
+      key: 'action',
+      width: 350,
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type="default" onClick={() => handleEditObligation(record)}>
+            Editar
+          </Button>
+          <Button
+            type="text"
+            danger
+            onClick={() => showDeleteConfirm(record)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Trash size={20} />
+          </Button>
+        </Space>
+      ),
+    }
+  ];
 
   const items = [
     {
@@ -71,34 +157,6 @@ export function ObligationDashboard() {
     },
   ];
 
-  function handleFinishForm(obligation: ObligationType) {
-    const status: StatusType = obligation.finalDeliveryDate < moment() ? 'Atrasada' : 'Pendente';
-    const newObligations: ObligationType = {
-      ...obligation,
-      status
-    }
-
-    console.log(newObligations);
-
-    setNewObligationsData((state) => [...state, newObligations])
-  }
-
-  function onDelete(record: ObligationType) {
-    record.id
-      ? setObligationsData((state) => state.filter((item) => item.id !== record.id)) 
-      : setNewObligationsData((state) => state.filter((item) => item.name !== record.name));
-  }
-
-  function onEdit(obligation: ObligationType) {
-    const activedObligation = obligations.find((item) => item.id === obligation.id);
-
-    form.setFieldsValue({
-      name: obligation.name,
-      finalDeliveryDate: obligation.finalDeliveryDate,
-      attatchment: obligation.attatchment
-    });
-  }
-
   return (
     <Layout>
       <Header title="Administração de Obrigações">
@@ -109,7 +167,7 @@ export function ObligationDashboard() {
         <Card title="Cadastro de obrigação">
           <Row gutter={[24, 0]}>
             <Col span={10}>
-              <ObligationForm form={form} onFinish={handleFinishForm} />
+              <ObligationForm form={form} onFinish={handleSubmitForm} />
             </Col>
             <Col span={14}>
               <Tabs items={items} />
