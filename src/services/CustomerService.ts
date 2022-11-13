@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export type StatusType = 'Atrasada' | 'Pendente'; 
+export type StatusType = 'Atrasada' | 'Pendente' | 'Entregue'; 
 
 export type ObligationType = { 
   id: string;

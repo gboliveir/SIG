@@ -24,6 +24,11 @@ export function useManagementObligationColumns({ onDelete, onEdit }: UseManageme
       tooltipTitle: 'A data final de entrega para está documentação ainda não passou, por essa razão a mesma será cadastrada como "Pendente". Todo e qualquer cliente que tiver vinculo com está obrigação terá seu status geral atualizado para "Em dias".',
       text: 'Pendente'
     },
+    Entregue: {
+      color: 'green',
+      tooltipTitle: 'Esta documentação já foi entregue.',
+      text: 'Entregue'
+    },
   }
 
   const showDeleteConfirm = (recordInfo: ObligationType) => ConfirmModal({
