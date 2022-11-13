@@ -187,7 +187,7 @@ export function CompanyManagement() {
       </Header>
 
       <Layout.Content style={{ margin: '16px 32px' }}>
-        <Card title="Cadastro de empresas">
+        <Card title="Gestão de empresas">
           <Row gutter={[24, 0]}>
             <Col span={10}>
               <CompanyForm form={form} onFinish={onFinish} />

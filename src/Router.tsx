@@ -20,7 +20,7 @@ export function Router() {
           <Route path="/lmcontabilidade/painel/counter" element={<AccountantDashboard />} />
           <Route path="/lmcontabilidade/painel/customer" element={<CustomerDashboard />} />
           <Route path="/lmcontabilidade/painel/management/obligations" element={<ObligationDashboard />} />
-          <Route path="/lmcontabilidade/painel/management/company" element={<CompanyManagement />} />
+          <Route path="/lmcontabilidade/painel/management/companies" element={<CompanyManagement />} />
         </Route>
       </Route>
     </Routes>

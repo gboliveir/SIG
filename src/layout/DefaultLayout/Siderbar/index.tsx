@@ -51,13 +51,19 @@ export function Sidebar() {
     },
     {
       label: 'Obrigações',
-      key: 'management-submenu-item-1',
+      key: 'painel-menu-item-3',
       icon: <ListChecks size={20} />,
       onClick: () => handleRedirect('/lmcontabilidade/painel/management/obligations')
     },
     {
+      label: 'Empresas',
+      key: 'painel-menu-item-4',
+      icon: <UserList size={20} />,
+      onClick: () => handleRedirect('/lmcontabilidade/painel/management/companies')
+    },
+    {
       label: 'Clientes',
-      key: 'management-submenu-item-2',
+      key: 'painel-menu-item-5',
       icon: <UserList size={20} />,
     }
   ];

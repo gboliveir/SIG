@@ -22,18 +22,27 @@ import { Trash } from 'phosphor-react';
 import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/icons';
 import { ConfirmModal } from '../../components/ConfirmModal';
 import { ColumnsType } from 'antd/lib/table';
-import { useManagementObligationController } from '../../hooks/controllers/useManagementObligationController';
+import { useManagementCompanyController } from '../../hooks/controllers/useManagementCompanyController';
+import { CompanyType } from '../../services/AccountantService';
+import { StandardizedDrawer } from '../../components/StandardizedDrawer';
+import { UserType } from '../../hooks/controllers/usePainelCounterController';
 
-export function ObligationDashboard() {
+export function ManagementCompany() {
   const {
     form,
-    obligationsData,
-    newObligationsData,
+    companiesData,
+    newCompaniesData,
     obligationTagsConfig,
     handleSubmitForm,
     handleDeleteObligation,
-    handleEditObligation
-  } = useManagementObligationController();
+    handleEditObligation,
+    openDrawer,
+    closeDrawer,
+    companyTagsConfigs,
+    obligationData,
+    drawerContentType,
+    userData
+  } = useManagementCompanyController();
 
   const showDeleteConfirm = (recordInfo: ObligationType) => ConfirmModal({
     title: 'Deseja mesmo deletar esse tributo da lista de obrigações ?',
@@ -41,7 +50,63 @@ export function ObligationDashboard() {
     onDelete: () => handleDeleteObligation(recordInfo),
   })
 
-  const obligationRecordColumns: ColumnsType<ObligationType> = [
+  const companyTableColumns: ColumnsType<CompanyType> = [
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      width: 200,
+      render: (_, record) => {
+        const tagConfig = companyTagsConfigs[record.status];
+
+        return (
+          <Tooltip title={tagConfig.tooltipTitle}>
+            <Tag color={tagConfig.color}>
+              {tagConfig.text}
+            </Tag>
+          </Tooltip>
+        );
+      }
+    },
+    {
+      title: 'CNPJ',
+      dataIndex: 'cnpj',
+      key: 'cnpj',
+      width: 200
+    },
+    {
+      title: 'Razão Social',
+      dataIndex: 'name',
+      key: 'name',
+      width: 200
+    },
+    {
+      title: 'Contatos',
+      key: 'contacts',
+      width: 250,
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type="dashed" onClick={() => openDrawer('contacts')}>
+            + Acessar lista de contatos
+          </Button>
+        </Space>
+      ),
+    },
+    {
+      title: 'Detalhes',
+      key: 'details',
+      width: 350,
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type="primary" onClick={() => openDrawer('obligations')}>
+            + Acessar lista de documentações
+          </Button>
+        </Space>
+      ),
+    }
+  ];
+
+  const obligationTableColumns: ColumnsType<ObligationType> = [
     {
       title: 'status',
       dataIndex: 'status',
@@ -115,21 +180,21 @@ export function ObligationDashboard() {
 
   const items = [
     {
-      key: 'obligations-tab-1',
+      key: 'companies-tab-1',
       label: 'Itens para criação',
       children: (
         <Table
           title={() => (
             <Row justify='space-between'>
               <Typography.Text strong>Obrigações</Typography.Text>
-              <Tooltip title="Crie todas as obrigações listadas abaixo.">
-                <Button disabled={newObligationsData.length === 0}>Criar Obrigações</Button>
+              <Tooltip title="Cadastre todas as organizações listadas abaixo.">
+                <Button disabled={newCompaniesData.length === 0}>Criar Obrigações</Button>
               </Tooltip>
             </Row>
           )}
           rowKey={(record) => `new-item-${record.id}`}
-          dataSource={newObligationsData}
-          columns={obligationRecordColumns}
+          dataSource={newCompaniesData}
+          columns={companyTableColumns}
           pagination={{
             defaultPageSize: 1,
             pageSize: 4
@@ -139,14 +204,14 @@ export function ObligationDashboard() {
       )
     },
     {
-      key: 'obligations-tab-2',
+      key: 'companies-tab-2',
       label: 'Itens já criados',
       children: (
         <Table
-          title={() => <Typography.Text strong>Obrigações</Typography.Text>}
+          title={() => <Typography.Text strong>Organizações</Typography.Text>}
           rowKey={(record) => `old-item-${record.id}`}
-          dataSource={obligationsData}
-          columns={obligationRecordColumns}
+          dataSource={companiesData}
+          columns={companyTableColumns}
           pagination={{
             defaultPageSize: 1,
             pageSize: 4
@@ -157,14 +222,46 @@ export function ObligationDashboard() {
     },
   ];
 
+  const userTableColumns: ColumnsType<UserType> = [
+    {
+      title: 'Nome',
+      dataIndex: 'name',
+      key: 'name',
+      width: 150,
+    },
+    {
+      title: 'CPF',
+      dataIndex: 'cpf',
+      key: 'cpf',
+      width: 200,
+    },
+    {
+      title: 'Contatos',
+      key: 'contacts',
+      width: 150,
+      render: (_, record) => (
+        <Row>
+          <Typography.Text>{record.email}</Typography.Text>
+          <Typography.Text>{record.phoneNumber}</Typography.Text>
+          <Typography.Text>{record.whatsapp}</Typography.Text>
+        </Row>
+      ),
+    }
+  ];
+
+  const isDrawerOpen = !!drawerContentType;
+  const drawerTitle = drawerContentType === 'obligations'
+    ? 'Obrigações da organização'
+    : 'Usuários vinculados a empresa';
+
   return (
     <Layout>
-      <Header title="Administração de Obrigações">
+      <Header title="Administração de Empresas">
         <HeaderForm />
       </Header>
 
       <Layout.Content style={{ margin: '16px 32px' }}>
-        <Card title="Gestão de obrigações">
+        <Card title="Cadastro de organizações">
           <Row gutter={[24, 0]}>
             <Col span={10}>
               <ObligationForm form={form} onFinish={handleSubmitForm} />
@@ -174,6 +271,27 @@ export function ObligationDashboard() {
             </Col>
           </Row>
         </Card>
+
+        <StandardizedDrawer
+          title={drawerTitle}
+          onClose={closeDrawer}
+          open={isDrawerOpen}
+        > 
+          {drawerContentType === 'obligations'
+            ? (
+              <Table
+                rowKey={(record) => record.id}
+                dataSource={obligationData}
+                columns={obligationTableColumns}
+              />
+            ) : (
+              <Table
+                rowKey={(record) => record.id}
+                dataSource={userData}
+                columns={userTableColumns}
+              />
+            )}
+        </StandardizedDrawer>
       </Layout.Content>
     </Layout>
   )
