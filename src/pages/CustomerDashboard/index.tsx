@@ -18,8 +18,6 @@ import { usePainelCustomerController } from '../../hooks/controllers/usePainelCu
 export function CustomerDashboard() {
   const { obligationData, obligationTagsConfig } = usePainelCustomerController();
 
-  
-
   const obligationTableColumns: ColumnsType<ObligationType> = [
     {
       title: 'Nome',
@@ -66,7 +64,7 @@ export function CustomerDashboard() {
 
   return (
     <Layout>
-      <Header title="Painel do Contador">
+      <Header title="Painel do Cliente">
         <HeaderForm />
       </Header>
 

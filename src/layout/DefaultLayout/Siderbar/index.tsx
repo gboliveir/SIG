@@ -36,7 +36,18 @@ export function Sidebar() {
       label: 'Acompanhamento',
       key: 'painel-menu-item-2',
       icon: <ArrowElbowDownRight size={20} />,
-      onClick: () => handleRedirect('/lmcontabilidade/painel/counter')
+      children: [
+        {
+          label: 'Contador',
+          key: 'painel-menu-item-2-counter',
+          onClick: () => handleRedirect('/lmcontabilidade/painel/counter')
+        },
+        {
+          label: 'Cliente',
+          key: 'painel-menu-item-2-customer',
+          onClick: () => handleRedirect('/lmcontabilidade/painel/customer')
+        }
+      ]
     },
     {
       label: 'Obrigações',
