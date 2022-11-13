@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { tagConfigs } from "../../../Constants/tagsConfig";
+import { companyTagsConfigs, obligationTagsConfig } from "../../../Constants/tagsConfig";
 import { companies } from "../../../Constants/companies";
 import { CompanyType } from "../../../services/AccountantService";
 import { ObligationType } from "../../../services/CustomerService";
@@ -34,8 +34,9 @@ export function usePainelCounterController() {
     obligationData,
     userData,
     drawerContentType,
-    tagConfigs,
+    companyTagsConfigs,
     openDrawer,
-    closeDrawer
+    closeDrawer,
+    obligationTagsConfig
   });
 }

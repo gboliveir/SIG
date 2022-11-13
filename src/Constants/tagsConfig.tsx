@@ -1,4 +1,4 @@
-export const tagConfigs = {
+export const companyTagsConfigs = {
   overdue: {
     color: 'red',
     tooltipTitle: 'A data final de entrega para está documentação já passou, por essa razão a mesma será cadastrada como "Atrasada". Todo e qualquer cliente que tiver vinculo com está obrigação terá seu status geral atualizado para "Em atraso".',
@@ -15,3 +15,18 @@ export const tagConfigs = {
     text: 'Em dias'
   }
 }
+
+export const obligationTagsConfig = [
+  {
+    color: 'green',
+    text: 'Entregue'
+  },
+  {
+    color: 'gold',
+    text: 'Pendente'
+  },
+  {
+    color: 'red',
+    text: 'Atrasado'
+  }
+]

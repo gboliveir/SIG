@@ -26,25 +26,11 @@ export function AccountantDashboard() {
     obligationData,
     userData,
     drawerContentType,
-    tagConfigs,
+    companyTagsConfigs,
     openDrawer,
-    closeDrawer
+    closeDrawer,
+    obligationTagsConfig
   } = usePainelCounterController();
-
-  const statusConfig = [
-    {
-      color: 'green',
-      text: 'Entregue'
-    },
-    {
-      color: 'gold',
-      text: 'Pendente'
-    },
-    {
-      color: 'red',
-      text: 'Atrasado'
-    }
-  ]
 
   const companyTableColumns: ColumnsType<CompanyType> = [
     {
@@ -53,7 +39,7 @@ export function AccountantDashboard() {
       key: 'status',
       width: 200,
       render: (_, record) => {
-        const tagConfig = tagConfigs[record.status];
+        const tagConfig = companyTagsConfigs[record.status];
 
         return (
           <Tooltip title={tagConfig.tooltipTitle}>
@@ -110,7 +96,7 @@ export function AccountantDashboard() {
       width: 150,
       render: (_, record) => {
         const statusCodeConfig = Number(record.status);
-        const config = statusConfig[statusCodeConfig - 1];
+        const config = obligationTagsConfig[statusCodeConfig - 1];
 
         return (
           <Tag color={config.color}>
