@@ -1,66 +1,63 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
-import { Button, Col, Row, Space, Tag, Typography } from "antd";
+import { Button, Space, Tag, Tooltip } from "antd";
 
 import { ColumnsType } from "antd/lib/table/interface";
-import { EnvelopeSimple, Phone, Trash, WhatsappLogo } from "phosphor-react";
+import { Trash } from "phosphor-react";
 import { ConfirmModal } from "../../components/ConfirmModal";
 
 import { UserEditingDrawerContext } from "../../contexts/UserEditingDrawerContext";
 
-import { CustomerType } from "../../services/AccountantService";
+import { CompanyType } from "../../services/AccountantService";
 import { UserDocumentationsDrawerContext } from "../../contexts/UserDocumentationsDrawerContext";
 
-const { Text, Link } = Typography;
-
-interface UseuseCounterColumnsData {
-  onDelete: (recordInfo: CustomerType) => void;
-  onEdit: (recordInfo: CustomerType) => void;
+interface UseCompanyTableColumnsData {
+  onDelete: (recordInfo: CompanyType) => void;
+  onEdit: (recordInfo: CompanyType) => void;
 }
 
-export function useCounterColumns({ onDelete, onEdit }: UseuseCounterColumnsData) {
+export function useCompanyTableColumns({ onDelete, onEdit }: UseCompanyTableColumnsData) {
   const { showDrawer } = useContext(UserEditingDrawerContext);
   const { showDocumentationDrawer } = useContext(UserDocumentationsDrawerContext);
-  const contactIcons = [
-    <Phone size={20} style={{ lineHeight: 0 }}/>,
-    <WhatsappLogo size={20} />,
-    <EnvelopeSimple size={20} />
-  ];
-  const statusConfig = [
-    {
-      color: 'green',
-      text: 'Em dias'
+  const tagConfigs = {
+    overdue: {
+      color: 'red',
+      tooltipTitle: 'A data final de entrega para está documentação já passou, por essa razão a mesma será cadastrada como "Atrasada". Todo e qualquer cliente que tiver vinculo com está obrigação terá seu status geral atualizado para "Em atraso".',
+      text: 'Atrasada'
     },
-    {
-      color: 'gold',
+    pending: {
+      color: 'yellow',
+      tooltipTitle: 'A data final de entrega para está documentação ainda não passou, por essa razão a mesma será cadastrada como "Pendente". Todo e qualquer cliente que tiver vinculo com está obrigação terá seu status geral atualizado para "Em dias".',
       text: 'Pendente'
     },
-    {
-      color: 'red',
-      text: 'Atrasado'
+    inDays: {
+      color: 'green',
+      tooltipTitle: 'A data final de entrega para está documentação ainda não passou, por essa razão a mesma será cadastrada como "Pendente". Todo e qualquer cliente que tiver vinculo com está obrigação terá seu status geral atualizado para "Em dias".',
+      text: 'Pendente'
     }
-  ];
+  }
 
-  const showDeleteConfirm = (recordInfo: CustomerType) => ConfirmModal({
+  const showDeleteConfirm = (recordInfo: CompanyType) => ConfirmModal({
     title: 'Deseja mesmo deletar este cliente da base de dados?',
     content: 'Caso SIM o cliente e todas as obrigações vinculadas ao mesmo serão permanentemente deletadas. Apenas com um novo cadastro será spossível adiciona-lo novamente a base de dados da empresa.',
     onDelete: () => onDelete(recordInfo)
   })
 
-  const customerTableColumns: ColumnsType<CustomerType> = [
+  const companyTableColumns: ColumnsType<CompanyType> = [
     {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
       width: 200,
       render: (_, record) => {
-        const statusCodeConfig = Number(record.status.id);
-        const config = statusConfig[statusCodeConfig - 1];
+        const tagConfig = tagConfigs[record.status];
 
         return (
-          <Tag color={config.color}>
-            {config.text}
-          </Tag>
+          <Tooltip title={tagConfig.tooltipTitle}>
+            <Tag color={tagConfig.color}>
+              {tagConfig.text}
+            </Tag>
+          </Tooltip>
         );
       }
     },
@@ -78,34 +75,8 @@ export function useCounterColumns({ onDelete, onEdit }: UseuseCounterColumnsData
     },
     {
       title: 'Contatos',
-      dataIndex: 'contacts',
       key: 'contacts',
       width: 250,
-      render: (_, record) => {
-        return (
-          <Row>
-            {record.contacts.map(contact => {
-              const contactType = Number(contact.type);
-
-              return (
-                <Col style={{ display: 'flex', gap: 8 }} key={contact.id}>
-                  {contactIcons[contactType - 1]}
-                  {contactType === 2 ? (
-                    <Link
-                      href={`mailto:${contact.contact}`}
-                      target='_blank'
-                    >
-                      {contact.contact}
-                    </Link>
-                  ) : (
-                    <Text>{contact.contact}</Text>
-                  )}
-                </Col>
-              );
-            })}
-          </Row>
-        );
-      },
     },
     {
       title: 'Detalhes',
@@ -146,6 +117,6 @@ export function useCounterColumns({ onDelete, onEdit }: UseuseCounterColumnsData
   ];
 
   return ({
-    customerTableColumns
+    companyTableColumns
   });
 }

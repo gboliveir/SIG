@@ -7,6 +7,7 @@ import { CustomerDashboard } from "./pages/CustomerDashboard";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { ObligationDashboard } from "./pages/ObligationDashboard";
+import { CompanyManagement } from "./pages/CompanyManagement";
 
 export function Router() {
   return (
@@ -18,7 +19,8 @@ export function Router() {
         <Route path="/lmcontabilidade/painel/" element={<DefaultLayout />}>
           <Route path="/lmcontabilidade/painel/counter" element={<AccountantDashboard />} />
           <Route path="/lmcontabilidade/painel/customer" element={<CustomerDashboard />} />
-          <Route path="/lmcontabilidade/painel/management/obligations" element={<ObligationDashboard />} />
+          <Route path="/lmcontabilidade/painel/management/obligation" element={<ObligationDashboard />} />
+          <Route path="/lmcontabilidade/painel/management/company" element={<CompanyManagement />} />
         </Route>
       </Route>
     </Routes>

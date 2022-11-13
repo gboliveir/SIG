@@ -1,8 +1,8 @@
 import { Button, Card, Form, Input, Tabs } from "antd";
-import { CustomerType } from "../../../services/AccountantService";
+import { CompanyType } from "../../../services/AccountantService";
 
 interface ClientFormProps {
-  initialValues?: CustomerType;
+  initialValues?: CompanyType;
   submitBtnText?: String;
 }
 

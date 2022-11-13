@@ -9,24 +9,24 @@ import { Header } from '../../components/Header';
 import { HeaderForm } from './HeaderForm';
 import { UserEditingDrawer } from './UserEditingDrawer';
 
-import { useCounterColumns } from '../../hooks/columns/useCounterTableColumns';
+import { useCompanyTableColumns } from '../../hooks/columns/useCounterTableColumns';
 
-import { AccountantService, CustomerType } from '../../services/AccountantService';
+import { AccountantService, CompanyType } from '../../services/AccountantService';
 
 import { customers } from '../../Constants/customers';
 import { UserDocumentationsDrawer } from './UserDocumentationsDrawer';
 
 export function AccountantDashboard() {
-  const [customerDataList, setCustomerDataList] = useState<CustomerType[] | undefined>(customers);
+  const [customerDataList, setCustomerDataList] = useState<CompanyType[] | undefined>([]);
 
-  const { customerTableColumns } = useCounterColumns({ onDelete, onEdit });
+  const { companyTableColumns } = useCompanyTableColumns({ onDelete, onEdit });
   const accountantService = new AccountantService();
 
-  function onDelete(record: CustomerType) {
+  function onDelete(record: CompanyType) {
 
   }
 
-  function onEdit(obligation: CustomerType) {
+  function onEdit(obligation: CompanyType) {
 
   }
 
@@ -45,7 +45,7 @@ export function AccountantDashboard() {
           <Table
             rowKey={(record) => record.id}
             dataSource={customerDataList}
-            columns={customerTableColumns}
+            columns={companyTableColumns}
             pagination={{
               defaultCurrent: 1,
               pageSize: 5

@@ -1,26 +1,28 @@
 import axios from "axios";
+import { ObligationType } from "./CustomerService";
 
-interface StatusType {
+export type StatusType = 'overdue' | 'pending' | 'inDays';
+
+export type EmployeesType = {
   id: string;
-}
+  name: string;
+  email: string;
+  cpf: string;
+  whatsapp: string;
+  phoneNumber: string;
+};
 
-export interface ContactType {
-  id: string;
-  customerId: string;
-  contact: string;
-  type: string;
-}
-
-export interface CustomerType {
+export type CompanyType = {
   id: string;
   cnpj: string;
   name: string;
   status: StatusType;
-  contacts: ContactType[],
+  employees: EmployeesType[];
+  obligations: ObligationType[];
 }
 
 export class AccountantService {
-  getCustomers(): Promise<CustomerType[]> {
+  getCustomers(): Promise<CompanyType[]> {
     return axios('http://localhost:3333/customers')
       .then(response => response.data)
       .catch(console.log)
