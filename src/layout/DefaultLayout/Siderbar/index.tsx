@@ -65,6 +65,7 @@ export function Sidebar() {
       label: 'Clientes',
       key: 'painel-menu-item-5',
       icon: <UserList size={20} />,
+      onClick: () => handleRedirect('/lmcontabilidade/painel/management/users')
     }
   ];
 

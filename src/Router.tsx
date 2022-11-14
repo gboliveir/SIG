@@ -8,6 +8,7 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { ObligationDashboard } from "./pages/ObligationDashboard";
 import { CompanyManagement } from "./pages/CompanyManagement";
+import { ManagementUser } from "./pages/ManagementUser";
 
 export function Router() {
   return (
@@ -21,6 +22,7 @@ export function Router() {
           <Route path="/lmcontabilidade/painel/customer" element={<CustomerDashboard />} />
           <Route path="/lmcontabilidade/painel/management/obligations" element={<ObligationDashboard />} />
           <Route path="/lmcontabilidade/painel/management/companies" element={<CompanyManagement />} />
+          <Route path="/lmcontabilidade/painel/management/users" element={<ManagementUser />} />
         </Route>
       </Route>
     </Routes>

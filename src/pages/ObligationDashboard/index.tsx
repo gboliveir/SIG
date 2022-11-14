@@ -123,7 +123,7 @@ export function ObligationDashboard() {
             <Row justify='space-between'>
               <Typography.Text strong>Obrigações</Typography.Text>
               <Tooltip title="Crie todas as obrigações listadas abaixo.">
-                <Button disabled={newObligationsData.length === 0}>Criar Obrigações</Button>
+                <Button disabled={newObligationsData.length === 0}>Criar obrigações</Button>
               </Tooltip>
             </Row>
           )}

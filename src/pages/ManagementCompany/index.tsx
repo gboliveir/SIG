@@ -188,7 +188,7 @@ export function ManagementCompany() {
             <Row justify='space-between'>
               <Typography.Text strong>Obrigações</Typography.Text>
               <Tooltip title="Cadastre todas as organizações listadas abaixo.">
-                <Button disabled={newCompaniesData.length === 0}>Criar Obrigações</Button>
+                <Button disabled={newCompaniesData.length === 0}>Criar empresas</Button>
               </Tooltip>
             </Row>
           )}
