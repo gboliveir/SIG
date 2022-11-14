@@ -7,7 +7,6 @@ import { CustomerDashboard } from "./pages/CustomerDashboard";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { ObligationDashboard } from "./pages/ObligationDashboard";
-import { CompanyManagement } from "./pages/CompanyManagement";
 import { ManagementUser } from "./pages/ManagementUser";
 import { ManagementCompany } from "./pages/ManagementCompany";
 
