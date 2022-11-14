@@ -23,7 +23,7 @@ import { useManagementCompanyController } from '../../hooks/controllers/useManag
 import { CompanyType } from '../../services/AccountantService';
 import { StandardizedDrawer } from '../../components/StandardizedDrawer';
 import { UserType } from '../../hooks/controllers/usePainelCounterController';
-import { CompanyForm } from './CompanyForm';
+import { CompanyForm } from '../../components/CompanyForm';
 
 export function ManagementCompany() {
   const {
