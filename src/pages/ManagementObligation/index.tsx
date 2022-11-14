@@ -15,7 +15,6 @@ import {
 } from 'antd';
 import { Header } from '../../components/Header';
 import { HeaderForm } from './HeaderForm';
-
 import { ObligationType } from '../../services/CustomerService';
 import { ObligationForm } from './ObligationForm';
 import { Trash } from 'phosphor-react';
@@ -24,7 +23,7 @@ import { ConfirmModal } from '../../components/ConfirmModal';
 import { ColumnsType } from 'antd/lib/table';
 import { useManagementObligationController } from '../../hooks/controllers/useManagementObligationController';
 
-export function ObligationDashboard() {
+export function ManagementObligation() {
   const {
     form,
     obligationsData,

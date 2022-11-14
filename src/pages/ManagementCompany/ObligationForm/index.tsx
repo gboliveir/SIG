@@ -2,7 +2,7 @@ import { Button, Card, Col, DatePicker, Form, Input, Row, Tag, Tooltip } from "a
 import { FormInstance } from "antd/es/form/Form";
 import moment from "moment";
 import { useState } from "react";
-import { UploadButton } from "../../ObligationDashboard/UploadButton";
+import { UploadButton } from "../../ManagementObligation/UploadButton";
 
 interface ObligationFormData {
   form: FormInstance;
