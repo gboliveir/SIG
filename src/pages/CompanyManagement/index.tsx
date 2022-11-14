@@ -17,7 +17,7 @@ import {
 import { Header } from '../../components/Header';
 import { HeaderForm } from './HeaderForm';
 
-import { CompanyForm } from './CompanyForm';
+import { CompanyForm } from '../ManagementCompany/CompanyForm';
 import { CompanyType } from '../../services/AccountantService';
 import { Trash } from 'phosphor-react';
 import { ColumnsType } from 'antd/lib/table/interface';

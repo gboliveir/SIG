@@ -1,5 +1,4 @@
 import moment from 'moment';
-
 import {
   Button,
   Card,
@@ -15,9 +14,7 @@ import {
 } from 'antd';
 import { Header } from '../../components/Header';
 import { HeaderForm } from './HeaderForm';
-
 import { ObligationType } from '../../services/CustomerService';
-import { ObligationForm } from './ObligationForm';
 import { Trash } from 'phosphor-react';
 import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/icons';
 import { ConfirmModal } from '../../components/ConfirmModal';
@@ -26,6 +23,7 @@ import { useManagementCompanyController } from '../../hooks/controllers/useManag
 import { CompanyType } from '../../services/AccountantService';
 import { StandardizedDrawer } from '../../components/StandardizedDrawer';
 import { UserType } from '../../hooks/controllers/usePainelCounterController';
+import { CompanyForm } from './CompanyForm';
 
 export function ManagementCompany() {
   const {
@@ -100,6 +98,29 @@ export function ManagementCompany() {
         <Space size="middle">
           <Button type="primary" onClick={() => openDrawer('obligations')}>
             + Acessar lista de documentações
+          </Button>
+        </Space>
+      ),
+    },
+    {
+      title: 'Ações',
+      key: 'action',
+      width: 350,
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type="default">
+            Editar
+          </Button>
+          <Button
+            type="text"
+            danger
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Trash size={20} />
           </Button>
         </Space>
       ),
@@ -178,6 +199,56 @@ export function ManagementCompany() {
     }
   ];
 
+  const userTableColumns: ColumnsType<UserType> = [
+    {
+      title: 'Nome',
+      dataIndex: 'name',
+      key: 'name',
+      width: 150,
+    },
+    {
+      title: 'CPF',
+      dataIndex: 'cpf',
+      key: 'cpf',
+      width: 200,
+    },
+    {
+      title: 'Contatos',
+      key: 'contacts',
+      width: 150,
+      render: (_, record) => (
+        <Row>
+          <Typography.Text>{record.email}</Typography.Text>
+          <Typography.Text>{record.phoneNumber}</Typography.Text>
+          <Typography.Text>{record.whatsapp}</Typography.Text>
+        </Row>
+      ),
+    },
+    {
+      title: 'Ações',
+      key: 'action',
+      width: 350,
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type="default">
+            Editar
+          </Button>
+          <Button
+            type="text"
+            danger
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Trash size={20} />
+          </Button>
+        </Space>
+      ),
+    }
+  ];
+
   const items = [
     {
       key: 'companies-tab-1',
@@ -222,33 +293,6 @@ export function ManagementCompany() {
     },
   ];
 
-  const userTableColumns: ColumnsType<UserType> = [
-    {
-      title: 'Nome',
-      dataIndex: 'name',
-      key: 'name',
-      width: 150,
-    },
-    {
-      title: 'CPF',
-      dataIndex: 'cpf',
-      key: 'cpf',
-      width: 200,
-    },
-    {
-      title: 'Contatos',
-      key: 'contacts',
-      width: 150,
-      render: (_, record) => (
-        <Row>
-          <Typography.Text>{record.email}</Typography.Text>
-          <Typography.Text>{record.phoneNumber}</Typography.Text>
-          <Typography.Text>{record.whatsapp}</Typography.Text>
-        </Row>
-      ),
-    }
-  ];
-
   const isDrawerOpen = !!drawerContentType;
   const drawerTitle = drawerContentType === 'obligations'
     ? 'Obrigações da organização'
@@ -264,7 +308,7 @@ export function ManagementCompany() {
         <Card title="Cadastro de organizações">
           <Row gutter={[24, 0]}>
             <Col span={10}>
-              <ObligationForm form={form} onFinish={handleSubmitForm} />
+              <CompanyForm form={form} onFinish={handleSubmitForm} />
             </Col>
             <Col span={14}>
               <Tabs items={items} />
