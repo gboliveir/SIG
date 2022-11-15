@@ -2,13 +2,13 @@ import { Route, Routes } from "react-router-dom";
 
 import { DefaultLayout } from "./layout/DefaultLayout";
 import { Home } from "./pages/Home";
-import { AccountantDashboard } from "./pages/AccountantDashboard";
 import { CustomerDashboard } from "./pages/CustomerDashboard";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import { ManagementObligation } from "./pages/ManagementObligation";
 import { ManagementUser } from "./pages/ManagementUser";
 import { ManagementCompany } from "./pages/ManagementCompany";
+import { AccountantDashboard } from "./pages/AccountantDashboard";
+import { ManagementObligation } from "./pages/ManagementObligation";
 
 export function Router() {
   return (
