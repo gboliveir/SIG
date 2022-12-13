@@ -1,4 +1,4 @@
-import { Button, Card, Form, Input, Tabs } from "antd";
+import { Button, Card, Form, Input, Select, Tabs } from "antd";
 import { FormInstance } from "antd/es/form/Form";
 
 interface CompanyFormData {
@@ -93,6 +93,25 @@ export function UserRegistrationForm({ form, onFinish }: CompanyFormData) {
           rules={[{ required: true, message: 'Por favor, repita aqui sua senha para validação!' }]}
         >
           <Input.Password placeholder="Insira novamente a senha" />
+        </Form.Item>
+
+        <Form.Item
+          label="Função"
+          name="role"
+          rules={[{ required: true, message: 'Por favor, insirá qual a função deste usuário!' }]}
+        >
+          <Input placeholder="Insira aqui a função" />
+        </Form.Item>
+
+        <Form.Item
+          label="Empresa a qual está vinculado"
+          name="companyId"
+          // rules={[{ required: true, message: 'Por favor, insirá a empresa!' }]}
+        >
+          <Select
+            placeholder="Selectione a empresa a qual o usuário está vinculado"
+            
+          />
         </Form.Item>
 
         <Form.Item>

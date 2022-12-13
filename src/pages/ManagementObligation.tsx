@@ -17,7 +17,7 @@ import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/ic
 import { ColumnsType } from 'antd/lib/table';
 import { useManagementObligationController } from '../hooks/controllers/useManagementObligationController';
 import { ConfirmModal } from '../components/ConfirmModal';
-import { ObligationType } from '../services/CustomerService';
+import { ObligationType } from '../services/ManagementUserService';
 import { ObligationRegistrationForm } from '../components/ObligationRegistrationForm';
 import { Header } from '../components/Header';
 

@@ -7,7 +7,11 @@ interface ConfirmModalProps {
   onDelete: () => void;
 }
 
-export function ConfirmModal({ title, content, onDelete }: ConfirmModalProps) {
+export function ConfirmModal({
+  title,
+  content,
+  onDelete
+}: ConfirmModalProps) {
   return (
     Modal.confirm({
       title,

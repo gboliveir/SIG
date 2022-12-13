@@ -18,21 +18,28 @@ import { UserType } from '../hooks/controllers/usePainelCounterController';
 import { ColumnsType } from 'antd/lib/table';
 import { Trash } from 'phosphor-react';
 import { UserRegistrationForm } from '../components/UserRegistrationForm';
+import { useEffect } from 'react';
 
 export function ManagementUser() {
   const {
     form,
     usersData,
     newUsersData,
-    handleSubmitForm,
+    handleAddUserToCreationList,
     handleDeleteUser,
     closeDrawer,
     isDrawerOpen,
+    fetchUsers,
+    handleCreateUserList
   } = useManagementUserController();
 
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   const showDeleteConfirm = (recordInfo: UserType) => ConfirmModal({
-    title: 'Deseja mesmo deletar esse tributo da lista de obrigações ?',
-    content: 'Se sim não será possível restaura-lo de imediato. O mesmo pode ser cadastrado novamente na aba de gestão de obrigações.',
+    title: 'Deseja mesmo deletar este usuário ?',
+    content: 'Se sim não será possível restaura-lo de imediato. Se encessário o retorno do mesmo a base de dados, será necessário um novo cadastrado através da tela de Adminitração de Usuários.',
     onDelete: () => handleDeleteUser(recordInfo),
   })
 
@@ -97,7 +104,12 @@ export function ManagementUser() {
             <Row justify='space-between'>
               <Typography.Text strong>Usuários</Typography.Text>
               <Tooltip title="Cadastre todas as organizações listadas abaixo.">
-                <Button disabled={newUsersData.length === 0}>Criar usuários</Button>
+                <Button
+                  disabled={newUsersData.length === 0}
+                  onClick={handleCreateUserList}
+                >
+                  Criar usuários
+                </Button>
               </Tooltip>
             </Row>
           )}
@@ -139,7 +151,7 @@ export function ManagementUser() {
         <Card title="Gestão de usuários">
           <Row gutter={[24, 0]}>
             <Col span={10}>
-              <UserRegistrationForm form={form} onFinish={handleSubmitForm} />
+              <UserRegistrationForm form={form} onFinish={handleAddUserToCreationList} />
             </Col>
             <Col span={14}>
               <Tabs items={items} />

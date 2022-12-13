@@ -13,7 +13,7 @@ import { ColumnsType } from "antd/lib/table/interface";
 import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/icons';
 import { usePainelCounterController, UserType } from '../hooks/controllers/usePainelCounterController';
 import { CompanyType } from '../services/AccountantService';
-import { ObligationType } from '../services/CustomerService';
+import { ObligationType } from '../services/ManagementUserService';
 import { AccountantFilters } from '../components/AccountantFilters';
 import { Header } from '../components/Header';
 import { StandardizedDrawer } from '../components/StandardizedDrawer';

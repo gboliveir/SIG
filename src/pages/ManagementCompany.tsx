@@ -14,7 +14,7 @@ import {
 } from 'antd';
 import { Header } from '../components/Header';
 import { CompanyRegistrationForm } from '../components/CompanyRegistrationForm';
-import { ObligationType } from '../services/CustomerService';
+import { ObligationType } from '../services/ManagementUserService';
 import { Trash } from 'phosphor-react';
 import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/icons';
 import { ConfirmModal } from '../components/ConfirmModal';

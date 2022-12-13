@@ -1,11 +1,11 @@
 import { Button, Card, Form, Input } from "antd";
-import { CustomerMessageDataType, CustomerService } from "../services/CustomerService";
+import { CustomerMessageDataType, ManagementUserService } from "../services/ManagementUserService";
 import { Title } from "./Title";
 
 const { TextArea } = Input;
 
 export function SectionContactUs() {
-  const customerService = new CustomerService();
+  const customerService = new ManagementUserService();
   const [form] = Form.useForm<CustomerMessageDataType>()
 
   const onFinish = async (values: CustomerMessageDataType) => {
@@ -16,7 +16,7 @@ export function SectionContactUs() {
       phoneNumber: undefined
     }
 
-    await customerService.setCustomerMessage(values)
+    // await customerService.setCustomerMessage(values)
 
     form.setFieldsValue(initialValues)
   };

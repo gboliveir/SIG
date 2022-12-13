@@ -3,7 +3,7 @@ import moment from "moment";
 import { Form } from "antd";
 import { obligations } from "../../../Constants/obligations";
 import { obligationTagsConfig } from "../../../Constants/tagsConfig";
-import { ObligationType, StatusType } from "../../../services/CustomerService";
+import { ObligationType, StatusType } from "../../../services/ManagementUserService";
 
 export function useManagementObligationController() {
   const [form] = Form.useForm();

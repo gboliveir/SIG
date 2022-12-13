@@ -1,5 +1,5 @@
 import moment from "moment";
-import { ObligationType } from "../services/CustomerService";
+import { ObligationType } from "../services/ManagementUserService";
 
 export const obligations: ObligationType[] = [
   {
