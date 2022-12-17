@@ -1,14 +1,14 @@
 import { Button, Card, Form, Input } from "antd";
-import { CustomerMessageDataType, ManagementUserService } from "../services/ManagementUserService";
+import { ManagementUserService } from "../services/ManagementUserService";
 import { Title } from "./Title";
 
 const { TextArea } = Input;
 
 export function SectionContactUs() {
   const customerService = new ManagementUserService();
-  const [form] = Form.useForm<CustomerMessageDataType>()
+  const [form] = Form.useForm()
 
-  const onFinish = async (values: CustomerMessageDataType) => {
+  const onFinish = async (values: any) => {
     const initialValues = {
       description: undefined,
       name: undefined,

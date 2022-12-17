@@ -1,38 +1,62 @@
 import { useState } from "react";
-import moment from "moment";
-import { Form } from "antd";
-import { obligations } from "../../../Constants/obligations";
+import { Form, message } from "antd";
 import { obligationTagsConfig } from "../../../Constants/tagsConfig";
-import { ObligationType, StatusType } from "../../../services/ManagementUserService";
+import { ObligationType } from "../../../services/ManagementObligationService";
+import { ManagementObligationService } from "../../../services/ManagementObligationService";
+import moment from "moment";
+
+type RecordType = {
+  name: string;
+  description: string;
+  develiveryDate: moment.Moment;
+  attachment: File | null
+}
+
+const initialFormState: RecordType = {
+  name: '',
+  description:'',
+  develiveryDate: moment(),
+  attachment: null
+}
 
 export function useManagementObligationController() {
-  const [form] = Form.useForm();
-  const [obligationsData, setObligationsData] = useState<ObligationType[]>(obligations);
+  const [form] = Form.useForm<RecordType>();
+  const [obligationsData, setObligationsData] = useState<ObligationType[]>([]);
   const [newObligationsData, setNewObligationsData] = useState<ObligationType[]>([]);
+  const service = new ManagementObligationService();
 
-  function handleSubmitForm(obligation: ObligationType) {
-    const status: StatusType = obligation.finalDeliveryDate < moment() ? 'Atrasada' : 'Pendente';
-    const newObligations: ObligationType = {
-      ...obligation,
-      status
+  async function handleSubmitForm(record: RecordType) {
+    try {
+      const status = record.develiveryDate > moment() ? 'Atrasado' : 'Pendente';
+  
+      const data: ObligationType = {
+        status,
+        name: record.name, 
+        description: record.description, 
+        develiveryDate: record.develiveryDate.format(),
+      }
+  
+      await service.createObligation(data)
+      message.success('Obrigação salva com sucesso!');
+      await service.getObligations('200') // ID da company do usuario
+        .then(setObligationsData)
+        .catch((err) => console.log(err));
+    } catch(err) {
+      console.log(err)
+      message.error('Um problema aconteceu!')
     }
-
-    setNewObligationsData((state) => [...state, newObligations])
   }
 
-  function handleDeleteObligation(record: ObligationType) {
-    record.id
-      ? setObligationsData((state) => state.filter((item) => item.id !== record.id)) 
-      : setNewObligationsData((state) => state.filter((item) => item.name !== record.name));
+  async function handleDeleteObligation(record: ObligationType) {
+    record.id && await service.deleteObligation(record.id)
   }
 
   function handleEditObligation(obligation: ObligationType) {
-    const activedObligation = obligations.find((item) => item.id === obligation.id);
-
     form.setFieldsValue({
       name: obligation.name,
-      finalDeliveryDate: obligation.finalDeliveryDate,
-      attatchment: obligation.attatchment
+      description: obligation.description,
+      develiveryDate: obligation.develiveryDate,
+      attachment: null,
     });
   }
 

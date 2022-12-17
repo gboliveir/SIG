@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ObligationType } from "./ManagementUserService";
+import { ObligationType } from "./ManagementObligationService";
 
 export type StatusType = 'overdue' | 'pending' | 'inDays';
 

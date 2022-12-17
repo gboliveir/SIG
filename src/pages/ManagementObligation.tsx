@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
   Button,
   Card,
@@ -17,7 +16,7 @@ import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/ic
 import { ColumnsType } from 'antd/lib/table';
 import { useManagementObligationController } from '../hooks/controllers/useManagementObligationController';
 import { ConfirmModal } from '../components/ConfirmModal';
-import { ObligationType } from '../services/ManagementUserService';
+import { ObligationType } from '../services/ManagementObligationService';
 import { ObligationRegistrationForm } from '../components/ObligationRegistrationForm';
 import { Header } from '../components/Header';
 
@@ -66,8 +65,9 @@ export function ManagementObligation() {
       key: 'finalDeliveryDate',
       render: (_, record) => {
         return (
+          // moment(record.develiveryDate.format('L'), 'DD/MM/YYYY').format('L')
           <Typography.Text>
-            {moment(record.finalDeliveryDate.format('L'), 'DD/MM/YYYY').format('L')}
+            {record.develiveryDate}
           </Typography.Text>
         )
       } 
@@ -77,8 +77,8 @@ export function ManagementObligation() {
       key: 'attatchment',
       render: (_, record) => (
         <Space size="middle">
-          {record.attatchment ? <FileDoneOutlined /> : <FileOutlined />} 
-          <Button disabled={!record.attatchment}>
+          {record.idDocument ? <FileDoneOutlined /> : <FileOutlined />} 
+          <Button disabled={!record.idDocument}>
             <DownloadOutlined />
           </Button>
         </Space>

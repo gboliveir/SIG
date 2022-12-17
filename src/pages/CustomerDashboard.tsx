@@ -11,8 +11,8 @@ import { Header } from '../components/Header';
 import { CustomerFilters } from '../components/CustomerFilters';
 import { ColumnsType } from "antd/lib/table/interface";
 import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/icons';
-import { ObligationType } from '../services/ManagementUserService';
 import { usePainelCustomerController } from '../hooks/controllers/usePainelCustomerController';
+import { ObligationType } from '../services/ManagementObligationService';
 
 export function CustomerDashboard() {
   const { obligationData, obligationTagsConfig } = usePainelCustomerController();
@@ -53,8 +53,8 @@ export function CustomerDashboard() {
       width: 150,
       render: (_, record) => (
         <Space size="middle">
-          {record.attatchment ? <FileDoneOutlined /> : <FileOutlined />} 
-          <Button disabled={!record.attatchment}>
+          {record.idDocument ? <FileDoneOutlined /> : <FileOutlined />} 
+          <Button disabled={!record.idDocument}>
             <DownloadOutlined />
           </Button>
         </Space>
@@ -71,7 +71,7 @@ export function CustomerDashboard() {
       <Layout.Content style={{ margin: '16px 32px' }}>
         <Card title="Clientes" >
           <Table
-            rowKey={(record) => record.id}
+            rowKey={(record) => `${record.idCompany}-${record.id}`}
             dataSource={obligationData}
             columns={obligationTableColumns}
             pagination={{

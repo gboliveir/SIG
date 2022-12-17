@@ -14,7 +14,6 @@ import {
 } from 'antd';
 import { Header } from '../components/Header';
 import { CompanyRegistrationForm } from '../components/CompanyRegistrationForm';
-import { ObligationType } from '../services/ManagementUserService';
 import { Trash } from 'phosphor-react';
 import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/icons';
 import { ConfirmModal } from '../components/ConfirmModal';
@@ -23,6 +22,7 @@ import { useManagementCompanyController } from '../hooks/controllers/useManageme
 import { CompanyType } from '../services/AccountantService';
 import { StandardizedDrawer } from '../components/StandardizedDrawer';
 import { UserType } from '../hooks/controllers/usePainelCounterController';
+import { ObligationType } from '../services/ManagementObligationService';
 
 export function ManagementCompany() {
   const {
@@ -155,7 +155,7 @@ export function ManagementCompany() {
       render: (_, record) => {
         return (
           <Typography.Text>
-            {moment(record.finalDeliveryDate.format('L'), 'DD/MM/YYYY').format('L')}
+            {record.develiveryDate}
           </Typography.Text>
         )
       } 
@@ -165,8 +165,8 @@ export function ManagementCompany() {
       key: 'attatchment',
       render: (_, record) => (
         <Space size="middle">
-          {record.attatchment ? <FileDoneOutlined /> : <FileOutlined />} 
-          <Button disabled={!record.attatchment}>
+          {record.idDocument ? <FileDoneOutlined /> : <FileOutlined />} 
+          <Button disabled={!record.idDocument}>
             <DownloadOutlined />
           </Button>
         </Space>
@@ -321,7 +321,7 @@ export function ManagementCompany() {
           {drawerContentType === 'obligations'
             ? (
               <Table
-                rowKey={(record) => record.id}
+                rowKey={(record) => `${record.idCompany}-${record.id}`}
                 dataSource={obligationData}
                 columns={obligationTableColumns}
               />

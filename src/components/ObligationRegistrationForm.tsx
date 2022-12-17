@@ -10,14 +10,14 @@ interface ObligationFormData {
 }
 
 export function ObligationRegistrationForm({ form, onFinish }: ObligationFormData) {
-  const [finalDeliveryDate, setFinalDeliveryDate] = useState<moment.Moment | null>(null);
+  const [develiveryDate, setDeveliveryDate] = useState<moment.Moment | null>(moment());
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
 
   function handleChangedDataPick(value: moment.Moment | null) {
-    setFinalDeliveryDate(value)
+    setDeveliveryDate(value)
   }
 
   function renderFinalDeliveryTag(finalDeliveryDate: moment.Moment | null) {
@@ -26,7 +26,7 @@ export function ObligationRegistrationForm({ form, onFinish }: ObligationFormDat
         {
           color: 'red',
           tooltipTitle: 'A data final de entrega para está documentação já passou, por essa razão a mesma será cadastrada como "Atrasada". Todo e qualquer cliente que tiver vinculo com está obrigação terá seu status geral atualizado para "Em atraso".',
-          text: 'Atrasada'
+          text: 'Atrasado'
         },
         {
           color: 'yellow',
@@ -66,27 +66,35 @@ export function ObligationRegistrationForm({ form, onFinish }: ObligationFormDat
           <Input placeholder="Insira aqui o nome da obrigação" />
         </Form.Item>
 
+        <Form.Item
+          label="Descrição"
+          name="description"
+          rules={[{ required: true, message: 'Por favor, uma descrição!' }]}
+        >
+          <Input placeholder="Insira aqui o nome da obrigação" />
+        </Form.Item>
+
         <Form.Item label="Data final de entrega">
           <Row gutter={[24, 0]}>
             <Col>
               <Form.Item
-                name="finalDeliveryDate"
+                name="develiveryDate"
                 rules={[{ required: true, message: 'Por favor, insira um prazo para a entrega!' }]}
               >
-                <DatePicker onChange={handleChangedDataPick} value={finalDeliveryDate}/>
+                <DatePicker onChange={handleChangedDataPick} value={develiveryDate}/>
               </Form.Item>
             </Col>
-            <Col>{renderFinalDeliveryTag(finalDeliveryDate)}</Col>
+            <Col>{renderFinalDeliveryTag(develiveryDate)}</Col>
           </Row>
         </Form.Item>
 
         <Form.Item
           label="Anexo"
-          name="attatchment"
+          name="attachment"
           rules={[{ required: true, message: 'Por favor, vincule ao menos uma documentação!' }]}
         >
           <UploadButton 
-            name="obligations-file"
+            name="attachment"
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           />
         </Form.Item>

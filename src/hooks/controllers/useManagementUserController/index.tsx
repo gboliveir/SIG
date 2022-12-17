@@ -15,7 +15,6 @@ export function useManagementUserController() {
   const api = new ManagementUserService();
 
   async function fetchUsers() {
-    await api.getUsers().then(data => console.log(data))
   }
 
   function handleAddUserToCreationList(record: UserType) {
@@ -23,7 +22,6 @@ export function useManagementUserController() {
   }
 
   async function handleCreateUserList() {
-    await api.postUsers(newUsersData);
   }
 
   function handleDeleteUser(record: UserType) {

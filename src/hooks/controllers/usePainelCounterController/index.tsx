@@ -2,7 +2,7 @@ import { useState } from "react";
 import { companyTagsConfigs, obligationTagsConfig } from "../../../Constants/tagsConfig";
 import { companies } from "../../../Constants/companies";
 import { CompanyType } from "../../../services/AccountantService";
-import { ObligationType } from "../../../services/ManagementUserService";
+import { ObligationType } from "../../../services/ManagementObligationService";
 
 type DrawerContentType = 'obligations' | 'contacts';
 

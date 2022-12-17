@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Form } from "antd";
 import { companyTagsConfigs, obligationTagsConfig } from "../../../Constants/tagsConfig";
-import { ObligationType } from "../../../services/ManagementUserService";
 import { CompanyType } from "../../../services/AccountantService";
 import { companies } from "../../../Constants/companies";
 import { UserType } from "../usePainelCounterController";
+import { ObligationType } from "../../../services/ManagementObligationService";
 
 type DrawerContentType = 'obligations' | 'contacts';
 

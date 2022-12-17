@@ -23,8 +23,7 @@ export const companies: CompanyType[] = [
         status: "Entregue",
         name: 'Avião',
         description: 'Tributo cobrado para aviões',
-        finalDeliveryDate: moment(),
-        attatchment: ''
+        develiveryDate: moment().format(),
       }
     ],
   }

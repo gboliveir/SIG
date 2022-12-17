@@ -13,10 +13,10 @@ import { ColumnsType } from "antd/lib/table/interface";
 import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/icons';
 import { usePainelCounterController, UserType } from '../hooks/controllers/usePainelCounterController';
 import { CompanyType } from '../services/AccountantService';
-import { ObligationType } from '../services/ManagementUserService';
 import { AccountantFilters } from '../components/AccountantFilters';
 import { Header } from '../components/Header';
 import { StandardizedDrawer } from '../components/StandardizedDrawer';
+import { ObligationType } from '../services/ManagementObligationService';
 
 export function AccountantDashboard() {
   const {
@@ -122,8 +122,8 @@ export function AccountantDashboard() {
       width: 150,
       render: (_, record) => (
         <Space size="middle">
-          {record.attatchment ? <FileDoneOutlined /> : <FileOutlined />} 
-          <Button disabled={!record.attatchment}>
+          {record.idDocument ? <FileDoneOutlined /> : <FileOutlined />} 
+          <Button disabled={!record.idDocument}>
             <DownloadOutlined />
           </Button>
         </Space>
@@ -190,7 +190,7 @@ export function AccountantDashboard() {
           {drawerContentType === 'obligations'
             ? (
               <Table
-                rowKey={(record) => record.id}
+                rowKey={(record) => `${record.idCompany}-${record.id}`}
                 dataSource={obligationData}
                 columns={obligationTableColumns}
               />
