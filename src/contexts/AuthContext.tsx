@@ -1,51 +1,40 @@
 import { createContext, ReactNode, useState } from "react";
-import { Navigate } from "react-router-dom";
-
-import { AuthService, UserData } from "../services/AuthService";
+import { ISignResponse } from "../services/AuthService";
 
 interface AuthContextProps {
-  user: UserData | undefined;
   isAuthenticated: boolean;
-  signIn: (userInfo: UserData) => void;
-  exit: () => void;
-  getUserInfo: () => void;
+  accessInfo: ISignResponse
+  handleAccessInfo: (value: ISignResponse) => void;
 }
 
 interface AuthProvicerProps {
   children: ReactNode;
 }
 
+const initialAccessState: ISignResponse = {
+  refreshToken: {
+    expiresIn: 0,
+    id: '',
+    userId: ''
+  },
+  user: {
+    name: '',
+    email: '',
+    role: 'CLIENT',
+  },
+  token: ''
+}
+
 export const AuthContext = createContext({} as AuthContextProps);
 
 export function AuthProvider({ children }: AuthProvicerProps) {
-  const [user, setUser] = useState<UserData | undefined>();
-  // const authService = new AuthService();
+  const [accessInfo, setAccessInfo] = useState<ISignResponse>(initialAccessState);
+  const isAuthenticated = accessInfo !== initialAccessState;
 
-  const isAuthenticated = !!user;
-
-  function signIn(userInfo: UserData) {
-    // await authService.signIn(userInfo).then(setUser);
-    localStorage.setItem("@lmcontabilidade.auth.v1.0.0", JSON.stringify(userInfo));
-    setUser(userInfo);
-  }
-
-  function exit() {
-    localStorage.removeItem("@lmcontabilidade.auth.v1.0.0");
-    setUser(undefined);
-  }
-
-  function getUserInfo() {
-    const userInfo = localStorage.getItem("@lmcontabilidade.auth.v1.0.0");
-
-    if(userInfo) {
-      setUser(JSON.parse(userInfo));
-    }
-  }
-
-
+  const handleAccessInfo = (value: ISignResponse) => setAccessInfo(value);
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn, exit, getUserInfo }}>
+    <AuthContext.Provider value={{ accessInfo, handleAccessInfo, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

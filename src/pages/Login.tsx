@@ -1,57 +1,11 @@
-import { Card, Form, Button, Checkbox, Input, Radio, Col, Row, Typography  } from "antd";
+import { Card, Form, Button, Checkbox, Input, Col, Row, Typography  } from "antd";
 import { Key, User } from "phosphor-react";
 import { HomeHeader } from "../components/HomeHeader";
 import { Logo } from "../components/Logo";
-
-import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
-
-interface RadioOption {
-  label: string;
-  value: string;
-  disabled?: boolean;
-}
-
-interface LoginFormData {
-  email: string;
-  password: string;
-  userType: 'client' | 'counter';
-  remember: boolean;
-}
+import { useLoginController } from "../hooks/controllers/useLoginController";
 
 export function Login() {
-  const { signIn } = useContext(AuthContext)
-  const [form] = Form.useForm<LoginFormData>()
-  const navigate = useNavigate();
-
-  const userTypeOptions: RadioOption[] = [
-    {
-      label: 'Cliente',
-      value: 'client'
-    },
-    {
-      label: 'Contador',
-      value: 'counter'
-    }
-  ];
-
-  function handleRedirect(to: string) {
-    navigate(to);
-  }
-
-  const onFinish = (values: LoginFormData) => {
-    const initialValues = {
-      email: undefined,
-      password: undefined,
-      userType: undefined,
-      remember: undefined
-    }
-
-    signIn(values)
-    form.setFieldsValue(initialValues)
-    handleRedirect('/lmcontabilidade/home')
-  };
+  const { onFinish, form } = useLoginController()
 
   return (
     <div>
@@ -93,14 +47,6 @@ export function Login() {
                     prefix={<Key size={15} />}
                     placeholder="Insira aqui sua senha"
                   />
-                </Form.Item>
-
-                <Form.Item
-                  label="Tipo de usuário"
-                  name="userType"
-                  rules={[{ required: true, message: 'Por favor, selecione um tipo de usuário!' }]}
-                >
-                  <Radio.Group options={userTypeOptions} />
                 </Form.Item>
 
                 <Form.Item>

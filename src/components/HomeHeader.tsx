@@ -7,6 +7,7 @@ import { User } from 'phosphor-react';
 import { Logo } from './Logo';
 
 import type { MenuProps } from 'antd';
+import { UsersType } from '../Constants/users-types';
 type MenuItem = Required<MenuProps>['items'][number];
 
 const { Header } = Layout;
@@ -14,11 +15,8 @@ const { Text } = Typography;
 
 export function HomeHeader() {
   const navigate = useNavigate();
-  const { user, isAuthenticated, getUserInfo, exit } = useContext(AuthContext);
+  const { accessInfo, isAuthenticated } = useContext(AuthContext);
 
-  useEffect(() => {
-    getUserInfo();
-  }, []);
 
   function handleRedirect(to: string) {
     navigate(to);
@@ -26,7 +24,11 @@ export function HomeHeader() {
 
   const menuItems: MenuItem[] = [
     {
-      label: <Text style={{ color: 'white' }}>{isAuthenticated ? user?.email : 'Usuario'}</Text>,
+      label: (
+        <Text style={{ color: 'white' }}>
+          {isAuthenticated ? accessInfo.user.email : 'Usuario'}
+        </Text>
+      ),
       key: 'user-menu-item-1',
       icon: <User size={15} />,
       children: [
@@ -40,14 +42,13 @@ export function HomeHeader() {
           label: 'Sair',
           key: 'user-submenu-item-2',
           disabled: !isAuthenticated,
-          onClick: exit
         },
         {
-          label: 'Acessar painel de acompanhamento',
+          label: 'Acessar SIG',
           key: 'user-submenu-item-3',
           disabled: !isAuthenticated,
-          onClick: () => user?.userType === 'client'
-            ? handleRedirect('/lmcontabilidade/painel/customer')
+          onClick: () => accessInfo.user.role === UsersType.CLIENT
+            ? handleRedirect('/lmcontabilidade/painel/client')
             : handleRedirect('/lmcontabilidade/painel/counter')
         }
       ]

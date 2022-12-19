@@ -11,24 +11,15 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 export function Header() {
   const navigate = useNavigate();
-  const { user, getUserInfo, exit } = useContext(AuthContext);
-
-  useEffect(() => {
-    getUserInfo();
-  }, []);
-
-  function handleRedirect(to: string) {
-    navigate(to);
-  }
+  const { accessInfo } = useContext(AuthContext);
 
   function handleExit() {
-    exit();
-    handleRedirect('/lmcontabilidade/home');
+    navigate('/lmcontabilidade/home');
   }
  
   const menuItems: MenuItem[] = [
     {
-      label: <Typography.Text style={{ color: 'white' }}>{user?.email}</Typography.Text>,
+      label: <Typography.Text style={{ color: 'white' }}>{accessInfo.user.email}</Typography.Text>,
       key: 'user-menu-item-1',
       icon: <User size={15} />,
       children: [

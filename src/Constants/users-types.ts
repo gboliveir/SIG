@@ -1,0 +1,5 @@
+export const UsersType = {
+  CLIENT: 'CLIENT',
+  COUNTER: 'COUNTER',
+  ADMINISTRATOR: 'ADMINISTRATOR'
+}
