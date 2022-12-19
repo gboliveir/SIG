@@ -1,14 +1,15 @@
-import { Typography } from "antd";
-
-const { Link } = Typography;
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 interface LogoProps {
   style?: React.CSSProperties;
 }
 
 export function Logo({ style }: LogoProps) {
+  const navigate = useNavigate()
+
   return (
-    <Link
+    <Button
       style={{
         width: 150,
         height: 31,
@@ -20,9 +21,9 @@ export function Logo({ style }: LogoProps) {
         color: 'white',
         ...style
       }}
-      href="/lmcontabilidade/home"
+      onClick={() => navigate('/lmcontabilidade/home')}
     >
       LM Contabilidade
-    </Link>
+    </Button>
   );
 }
