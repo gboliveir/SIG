@@ -1,1 +1,1 @@
-export type StatusType = 'Atrasado' | 'Pendente' | 'Entregue';
+export type StatusType = 'Atrasado' | 'Pendente' | 'Entregue' | 'neutral' ;

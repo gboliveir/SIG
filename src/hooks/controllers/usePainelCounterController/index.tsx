@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { companyTagsConfigs, obligationTagsConfig } from "../../../Constants/tagsConfig";
+import { companyTagsConfigs, obligationTagsConfig } from "../../../Constants/company-tags-config";
 import { companies } from "../../../Constants/companies";
 import { CompanyType } from "../../../services/AccountantService";
 import { ObligationType } from "../../../services/ManagementObligationService";

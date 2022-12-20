@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form } from "antd";
-import { companyTagsConfigs } from "../../../Constants/tagsConfig";
+import { companyTagsConfigs } from "../../../Constants/company-tags-config";
 
 import { ManagementUserService, UserType } from '../../../services/ManagementUserService';
 

@@ -1,4 +1,3 @@
-import moment from 'moment';
 import {
   Button,
   Card,
@@ -7,7 +6,6 @@ import {
   Row,
   Space,
   Table,
-  Tabs,
   Tag,
   Tooltip,
   Typography
@@ -19,42 +17,53 @@ import { DownloadOutlined, FileDoneOutlined, FileOutlined } from '@ant-design/ic
 import { ConfirmModal } from '../components/ConfirmModal';
 import { ColumnsType } from 'antd/lib/table';
 import { useManagementCompanyController } from '../hooks/controllers/useManagementCompanyController';
-import { CompanyType } from '../services/AccountantService';
 import { StandardizedDrawer } from '../components/StandardizedDrawer';
 import { UserType } from '../hooks/controllers/usePainelCounterController';
 import { ObligationType } from '../services/ManagementObligationService';
+import { ICompany } from '../services/ManagementCompanyService';
+import { useEffect } from 'react';
 
 export function ManagementCompany() {
   const {
-    form,
-    companiesData,
-    newCompaniesData,
-    obligationTagsConfig,
-    handleSubmitForm,
-    handleDeleteObligation,
-    handleEditObligation,
-    openDrawer,
-    closeDrawer,
-    companyTagsConfigs,
-    obligationData,
-    drawerContentType,
-    userData
+    extras: {
+      form,
+      companyTagsConfigs,
+      drawerContentType,
+      obligationTagsConfig
+    },
+    methods: {
+      handleCreateCompany,
+      handleDeleteCompany,
+      handleUpdateCompany,
+      handleCloseDrawer,
+      handleOpenDrawer,
+      fetchInit
+    },
+    states: {
+      companiesData,
+      contactsData,
+      obligationsData
+    }
   } = useManagementCompanyController();
 
-  const showDeleteConfirm = (recordInfo: ObligationType) => ConfirmModal({
-    title: 'Deseja mesmo deletar esse tributo da lista de obrigações ?',
-    content: 'Se sim não será possível restaura-lo de imediato. O mesmo pode ser cadastrado novamente na aba de gestão de obrigações.',
-    onDelete: () => handleDeleteObligation(recordInfo),
-  })
+  useEffect(() => {
+    fetchInit();
+  }, []);
 
-  const companyTableColumns: ColumnsType<CompanyType> = [
+  const showDeleteConfirm = (recordId: string) => ConfirmModal({
+    title: 'Tem certeza que desaja deletar esta empresa da base de dados do sistema?',
+    content: 'Se sim não será possível restaura-la. Todos os seus dados serão perdidos e a mesma só poderá voltar a base de dados mediante um novo cadastro a partir desta tela.',
+    onDelete: () => handleDeleteCompany(recordId),
+  });
+
+  const companyTableColumns: ColumnsType<ICompany> = [
     {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
       width: 200,
-      render: (_, record) => {
-        const tagConfig = companyTagsConfigs[record.status];
+      render: (_, { status = 'neutral' }) => {
+        const tagConfig = companyTagsConfigs[status];
 
         return (
           <Tooltip title={tagConfig.tooltipTitle}>
@@ -83,7 +92,7 @@ export function ManagementCompany() {
       width: 250,
       render: (_, record) => (
         <Space size="middle">
-          <Button type="dashed" onClick={() => openDrawer('contacts')}>
+          <Button type="dashed" onClick={() => handleOpenDrawer('contacts', record.id || '')}>
             + Acessar lista de contatos
           </Button>
         </Space>
@@ -95,7 +104,7 @@ export function ManagementCompany() {
       width: 350,
       render: (_, record) => (
         <Space size="middle">
-          <Button type="primary" onClick={() => openDrawer('obligations')}>
+          <Button type="primary" onClick={() => handleOpenDrawer('obligations', record.id || '')}>
             + Acessar lista de documentações
           </Button>
         </Space>
@@ -107,11 +116,12 @@ export function ManagementCompany() {
       width: 350,
       render: (_, record) => (
         <Space size="middle">
-          <Button type="default">
+          <Button type="default" onClick={() => handleUpdateCompany(record)}>
             Editar
           </Button>
           <Button
             type="text"
+            onClick={() => showDeleteConfirm(record.id || '')}
             danger
             style={{
               display: 'flex',
@@ -131,8 +141,8 @@ export function ManagementCompany() {
       title: 'status',
       dataIndex: 'status',
       key: 'status',
-      render: (_, record) => {
-        const tagConfig = obligationTagsConfig[record.status];
+      render: (_, { status = 'neutral' }) => {
+        const tagConfig = obligationTagsConfig[status];
 
         return (
           <Tooltip title={tagConfig.tooltipTitle}>
@@ -178,13 +188,12 @@ export function ManagementCompany() {
       width: 350,
       render: (_, record) => (
         <Space size="middle">
-          <Button type="default" onClick={() => handleEditObligation(record)}>
+          <Button type="default">
             Editar
           </Button>
           <Button
             type="text"
             danger
-            onClick={() => showDeleteConfirm(record)}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -248,50 +257,6 @@ export function ManagementCompany() {
     }
   ];
 
-  const items = [
-    {
-      key: 'companies-tab-1',
-      label: 'Itens para criação',
-      children: (
-        <Table
-          title={() => (
-            <Row justify='space-between'>
-              <Typography.Text strong>Obrigações</Typography.Text>
-              <Tooltip title="Cadastre todas as organizações listadas abaixo.">
-                <Button disabled={newCompaniesData.length === 0}>Criar empresas</Button>
-              </Tooltip>
-            </Row>
-          )}
-          rowKey={(record) => `new-item-${record.id}`}
-          dataSource={newCompaniesData}
-          columns={companyTableColumns}
-          pagination={{
-            defaultPageSize: 1,
-            pageSize: 4
-          }}
-          bordered
-        />
-      )
-    },
-    {
-      key: 'companies-tab-2',
-      label: 'Itens já criados',
-      children: (
-        <Table
-          title={() => <Typography.Text strong>Organizações</Typography.Text>}
-          rowKey={(record) => `old-item-${record.id}`}
-          dataSource={companiesData}
-          columns={companyTableColumns}
-          pagination={{
-            defaultPageSize: 1,
-            pageSize: 4
-          }}
-          bordered
-        />
-      )
-    },
-  ];
-
   const isDrawerOpen = !!drawerContentType;
   const drawerTitle = drawerContentType === 'obligations'
     ? 'Obrigações da organização'
@@ -302,33 +267,46 @@ export function ManagementCompany() {
       <Header title="Administração de Empresas" />
 
       <Layout.Content style={{ margin: '16px 32px' }}>
-        <Card title="Cadastro de organizações">
+        <Card title="Cadastro de empresas">
           <Row gutter={[24, 0]}>
             <Col span={10}>
-              <CompanyRegistrationForm form={form} onFinish={handleSubmitForm} />
+              <CompanyRegistrationForm
+                form={form}
+                onFinish={handleCreateCompany}
+              />
             </Col>
             <Col span={14}>
-              <Tabs items={items} />
+              <Table
+                title={() => <Typography.Text strong>Organizações</Typography.Text>}
+                rowKey={(record) => `old-item-${record.id}`}
+                dataSource={companiesData}
+                columns={companyTableColumns}
+                pagination={{
+                  defaultPageSize: 1,
+                  pageSize: 4
+                }}
+                bordered
+              />
             </Col>
           </Row>
         </Card>
 
         <StandardizedDrawer
           title={drawerTitle}
-          onClose={closeDrawer}
+          onClose={handleCloseDrawer}
           open={isDrawerOpen}
         > 
           {drawerContentType === 'obligations'
             ? (
               <Table
                 rowKey={(record) => `${record.idCompany}-${record.id}`}
-                dataSource={obligationData}
+                dataSource={obligationsData}
                 columns={obligationTableColumns}
               />
             ) : (
               <Table
                 rowKey={(record) => record.id}
-                dataSource={userData}
+                dataSource={contactsData}
                 columns={userTableColumns}
               />
             )}

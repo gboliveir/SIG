@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, message } from "antd";
-import { obligationTagsConfig } from "../../../Constants/tagsConfig";
+import { obligationTagsConfig } from "../../../Constants/company-tags-config";
 import { ObligationType } from "../../../services/ManagementObligationService";
 import { ManagementObligationService } from "../../../services/ManagementObligationService";
 import moment from "moment";

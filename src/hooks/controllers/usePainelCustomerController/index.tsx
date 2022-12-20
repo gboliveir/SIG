@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { obligationTagsConfig } from "../../../Constants/tagsConfig";
+import { obligationTagsConfig } from "../../../Constants/company-tags-config";
 import { ObligationType } from "../../../services/ManagementObligationService";
 
 export function usePainelCustomerController() {

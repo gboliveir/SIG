@@ -1,10 +1,11 @@
-import { Button, Card, Form, Input, Tag, Tooltip } from "antd";
+import { Button, Card, Form, Input, Select, Tag, Tooltip } from "antd";
 import { FormInstance } from "antd/es/form/Form";
 import moment from "moment";
+import { ICompany } from "../services/ManagementCompanyService";
 
 interface CompanyFiltersData {
-  form: FormInstance;
-  onFinish: (values: any) => void;
+  form: FormInstance<ICompany>;
+  onFinish: (values: ICompany) => void;
 }
 
 export function CompanyRegistrationForm({ form, onFinish }: CompanyFiltersData) {
@@ -68,9 +69,10 @@ export function CompanyRegistrationForm({ form, onFinish }: CompanyFiltersData) 
         <Form.Item
           label="Obrigações"
           name="obligations"
-          rules={[{ required: true, message: 'Por favor, insira o cnpj!' }]}
         >
-          <Input placeholder="Insira aqui o cnpj" />
+          <Select
+            placeholder="Atrele obrigações a está empresa."
+          />
         </Form.Item>
 
         <Form.Item>

@@ -13,6 +13,11 @@ export const companyTagsConfigs = {
     color: 'green',
     tooltipTitle: 'Este cliente tem cumprido com suas obrigações.',
     text: 'Em dias'
+  },
+  neutral: {
+    color: 'gray',
+    tooltipTitle: 'Ainda não existem documentações atreladas a está empresa.',
+    text: 'Neutro'
   }
 }
 
@@ -32,4 +37,9 @@ export const obligationTagsConfig = {
     tooltipTitle: 'Esta documentação já foi entregue.',
     text: 'Entregue'
   },
+  neutral: {
+    color: 'gray',
+    tooltipTitle: '-',
+    text: '-'
+  }
 }
